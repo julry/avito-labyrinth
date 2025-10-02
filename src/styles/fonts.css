@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Aeroport';
+    src: url('../assets/fonts/Aeroport-Bold.woff2') format('woff2'),
+     local('AeroportBold'), local('Aeroport-Bold'), local('Aeroport-bold');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Aeroport';
+    src: url('../assets/fonts/Aeroport-Light.woff2') format('woff2'),
+    local('AeroportLight'), local('Aeroport-Light'), local('Aeroport-light');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Aeroport';
+    src: url('../assets/fonts/Aeroport.woff2') format('woff2'),
+    local('Aeroport'), local('AeroportRegular'), local('Aeroport-Regular'), local('Aeroport-regular');
+    font-weight: 400;
+    font-style: normal;
+}
+/* @font-face {
+    font-family: 'Aeroport';
+    src: url('../assets/fonts/Aeroport-Black.woff2') format('woff2'),
+     local('AeroportBlack'), local('Aeroport-Black'), local('Aeroport-black');
+    font-weight: 900;
+    font-style: normal;
+} */
+
+@font-face {
+    font-family: 'Aeroport';
+    src: url('../assets/fonts/Aeroport-Medium.woff2') format('woff2'),
+    local('AeroportMedium'), local('Aeroport-Medium'), local('Aeroport-medium');
+    font-weight: 500;
+    font-style: normal;
+}

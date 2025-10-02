@@ -1,0 +1,67 @@
+@import "fonts.css";
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  font-family: 'Aeroport', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --color-red: #FF4053;
+  --color-blue: #00AAFF;
+  --color-purple: #965EEB;
+  --color-green: #04E061;
+  --color-gray: #868686;
+  --color-light-gray: #B4B4B4;
+
+  --btn-bg-main: var(--color-red);
+  --btn-bg-secondary: #FFC1C7;
+  --btn-color-main: #ffffff;
+  --btn-color-secondary: var(--color-red);
+  --btn-color-secondary-disabled: var(--color-light-gray);
+  --btn-color-disabled: #ffffff;
+  --btn-bg-disabled: #BDBDBD
+}
+
+button {
+  font-family: 'Aeroport', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 900;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+#root {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+p, span, a {
+  letter-spacing: -0.04em;
+  line-height: 100%;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+input {
+  font-family: 'Aeroport', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+}
+
+a {
+  color: inherit;
+}
+
+a:visited {
+  color: inherit;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
