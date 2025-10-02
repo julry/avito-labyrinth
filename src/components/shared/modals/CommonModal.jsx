@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Modal } from "./Modal";
 import { Block } from "../Block";
 import { Button } from "../Button";
-import { CollegueMessage } from "../CollegueMessage";
 
 const ModalStyled = styled(Modal)`
     display: flex;
@@ -10,19 +9,6 @@ const ModalStyled = styled(Modal)`
     align-items: center;
 `;
 
-const BlockStyled = styled(Block)`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-`;
-
-const CollegueBlock = styled(CollegueMessage)`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-`;
 
 const ButtonStyled = styled(Button)`
     margin-top: auto;
@@ -31,13 +17,11 @@ const ButtonStyled = styled(Button)`
 
 
 export const CommonModal = ({ isOpen, onClose, children, isCollegue, isDisabledAnimation, isDarken = true, btnText = 'Далее', ...props }) => {
-    const Content = isCollegue ? CollegueBlock : BlockStyled;
-
     return (
         <ModalStyled isDarken={isDarken} isDisabledAnimation={isDisabledAnimation} isOpen={isOpen} {...props}>
-            <Content>
+            <div>
                 {children}
-            </Content>
+            </div>
             <ButtonStyled onClick={onClose}>{btnText}</ButtonStyled>
         </ModalStyled>
     )

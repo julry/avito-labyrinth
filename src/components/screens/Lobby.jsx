@@ -36,7 +36,7 @@ const IconButtonStyled = styled(IconButton)`
 
 
 
-export const Lobby = ({ week }) => {
+export const Lobby = ({ week, isDisabled }) => {
     const { next, user, newAchieve, setNewAchieve} = useProgress();
     const gameData = user[`game${week}Week`] ?? {};
     const currentLevel = useMemo(() => (
@@ -44,7 +44,7 @@ export const Lobby = ({ week }) => {
     ), []);
 
     const handleClickItem = (index) => {
-        if (index !== currentLevel) return;
+        if (isDisabled || index !== currentLevel) return;
 
         next(SCREENS[`LEVEL${week}${index}`])
     };

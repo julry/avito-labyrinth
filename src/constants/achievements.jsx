@@ -4,25 +4,25 @@ export const achievements = [
         text: 'Начать меняться — сложнее всего, но ты движешься в верном направлении. Смелее вперёд!',
         title: 'Первый шаг',
         icon: () => (
-            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_235_1555)">
-                    <g clip-path="url(#clip1_235_1555)">
-                        <path d="M12.9785 18.6218V12.9142" stroke="#04E061" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M5.84425 21C5.84425 21 7.27114 19.0975 12.9787 19.0975C18.6863 19.0975 21.0645 21 21.0645 21" stroke="#04E061" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M5.08543 3.18991C6.02914 2.24619 8.70675 3.39374 11.066 5.75303C13.4253 8.11231 14.5729 10.7899 13.6292 11.7336C12.6854 12.6774 10.0078 11.5298 7.64854 9.17052C5.28926 6.81123 4.14171 4.13362 5.08543 3.18991Z" stroke="#04E061" stroke-width="2"/>
-                        <path d="M13.0232 12.1213C14.2631 11.8562 15.9355 10.8334 17.4728 9.2961C19.8321 6.93682 20.9797 4.25921 20.036 3.3155C19.0922 2.37178 16.4146 3.51933 14.0553 5.87861C13.5945 6.33947 13.1799 6.81247 12.818 7.28233" stroke="#04E061" stroke-width="2" stroke-linecap="round"/>
-                    </g>
-                </g>
-                <defs>
-                <clipPath id="clip0_235_1555">
-                <rect width="23.871" height="23.871" fill="white" transform="translate(0.564453 0.0645142)"/>
-                </clipPath>
-                <clipPath id="clip1_235_1555">
-                <rect width="24" height="24" fill="white" transform="translate(1)"/>
-                </clipPath>
-                </defs>
+             <svg width="76" height="76" viewBox="0 0 76 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_237_1721)">
+            <g clip-path="url(#clip1_237_1721)">
+            <path d="M39.2544 58.314V40.6058" stroke="#04E061" stroke-width="6.20513" stroke-linecap="round"/>
+            <path d="M17.1182 65.6923C17.1182 65.6923 21.5452 59.7896 39.2533 59.7896C56.9615 59.7896 64.3398 65.6923 64.3398 65.6923" stroke="#04E061" stroke-width="6.20513" stroke-linecap="round"/>
+            <path d="M14.7638 10.4354C17.6917 7.50743 25.9991 11.0678 33.319 18.3876C40.6388 25.7074 44.1992 34.0149 41.2712 36.9428C38.3433 39.8708 30.0358 36.3104 22.716 28.9906C15.3962 21.6708 11.8358 13.3633 14.7638 10.4354Z" stroke="#04E061" stroke-width="6.20513"/>
+            <path d="M39.3931 38.1454C43.2398 37.3232 48.4287 34.1498 53.1982 29.3802C60.5181 22.0604 64.0784 13.7529 61.1505 10.825C58.2225 7.89707 49.9151 11.4574 42.5953 18.7772C41.1654 20.2071 39.879 21.6746 38.7564 23.1324" stroke="#04E061" stroke-width="6.20513" stroke-linecap="round"/>
+            </g>
+            </g>
+            <defs>
+            <clipPath id="clip0_237_1721">
+            <rect width="74.0612" height="74.0612" fill="white" transform="translate(0.969238 0.969421)"/>
+            </clipPath>
+            <clipPath id="clip1_237_1721">
+            <rect width="74.4615" height="74.4615" fill="white" transform="translate(2.32031 0.769287)"/>
+            </clipPath>
+            </defs>
             </svg>
-        )
+        ),
     },
     {
         id: 1,

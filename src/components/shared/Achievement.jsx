@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import { useSizeRatio } from "../../hooks/useSizeRatio";
-import { Bold } from "./Spans";
-import { FlexWrapper } from "./ContentWrapper";
 
 const Wrapper = styled.div`
     display: flex;
@@ -36,7 +34,7 @@ export const Achievement = ({icon, title, text, isActive, ...props}) => {
         <Wrapper {...props}>
             <IconWrapper $ratio={ratio} $isActive={isActive}>{icon?.()}</IconWrapper>
             <div>
-                <p><Bold>{title}</Bold></p>
+                <p><b>{title}</b></p>
                 <Text>{text}</Text>
             </div>
         </Wrapper>

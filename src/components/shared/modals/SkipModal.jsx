@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Modal } from "./Modal";
 import { Block } from "../Block";
 import { Button } from "../Button";
-import { Bold } from "../Spans";
 
 const ModalStyled = styled(Modal)`
     display: flex;
@@ -31,7 +30,7 @@ const ButtonWrapper= styled.div`
 export const SkipModal = ({ isOpen, onClose, onExit }) => (
     <ModalStyled isDarken isOpen={isOpen}>
         <BlockStyled>
-            <p><Bold>Ты точно хочешь выйти?</Bold></p>
+            <p><b>Ты точно хочешь выйти?</b></p>
         </BlockStyled>
         <ButtonWrapper>
             <Button onClick={onClose}>Продолжить</Button>
