@@ -5,11 +5,23 @@ import { Logo } from "./Logo";
 import { Button } from "./Button";
 import { Block } from "./Block";
 import { useProgress } from "../../contexts/ProgressContext";
+import week1Bg from '../../assets/images/week1Bg.svg';
+import week2Bg from '../../assets/images/week2Bg.svg';
+import week3Bg from '../../assets/images/week3Bg.svg';
+
+const WEEK_TO_BG = {
+ 1: week1Bg,
+ 2: week2Bg,
+ 3: week3Bg
+}
 
 const Wrapper = styled(FlexWrapper)`
     justify-content: center;
     background-color: var(--color-purple);
     align-items: center;
+    background-image: url(${({$bg}) => $bg});
+    background-size: cover;
+    font-size: var(--font_sm);
 `;
 
 const Content = styled(FlexWrapper)`
@@ -29,12 +41,12 @@ const LogoStyled = styled(Logo)`
     height: ${({$ratio}) => $ratio * 53}px;
 `;
 
-export const InfoScreen = ({buttonText, onClick, hasLogo = true, isDisabledButton, ...props}) => {
+export const InfoScreen = ({buttonText, week = 1, onClick, hasLogo = true, isDisabledButton, ...props}) => {
     const { next } = useProgress();
     const ratio = useSizeRatio();
 
     return (
-        <Wrapper {...props}>
+         <Wrapper {...props} $bg={`${WEEK_TO_BG[week]}`}>
             <Content>
                 <Block>
                     {props.children}

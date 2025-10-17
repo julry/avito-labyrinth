@@ -6,9 +6,7 @@ import { RedStroke3Line } from "../../shared/RedStrokes";
 import { MarkeredText } from "../../shared/Texts";
 
 const ScreenWrapper = styled(InfoScreen)`
-    background-image: url(${() => '"' + week1Bg + '"'});
-    background-size: cover;
-    font-size: var(--font_sm);
+    
 `;
 
 export const InfoWeek1 = () => {

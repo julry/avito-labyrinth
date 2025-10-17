@@ -1,6 +1,7 @@
 import { useProgress } from "../../../contexts/ProgressContext";
 import { useSizeRatio } from "../../../hooks/useSizeRatio"
 import { InfoScreen } from "../../shared/InfoScreen";
+import { RedStroke1Line } from "../../shared/RedStrokes";
 
 export const Advice22 = () => {
     const { next, registrateAchieve } = useProgress();
@@ -13,7 +14,7 @@ export const Advice22 = () => {
 
     return (
         <InfoScreen buttonText={"Продолжить путь"} onClick={handleClick}>
-            <p>Совет от Авито</p>
+            <RedStroke1Line>Совет от Авито</RedStroke1Line>
             <p>
                 Как еще обрести уверенность?{'\n\n'}
                 Начни с выражения мыслей там, где точно нет риска осуждения — в личном дневнике, заметках на телефоне или голосовых сообщениях самому себе.{'\n\n'}

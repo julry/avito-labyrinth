@@ -63,7 +63,7 @@ const getMoscowTime = (date) => {
 }
 
 const getCurrentWeek = () => {
-    return 1;
+    return 2;
     // const today = getMoscowTime();
 
     // if (today < getMoscowTime(new Date(2025, 8, 15))) return 0;
@@ -318,12 +318,6 @@ export function ProgressProvider(props) {
 
     const registrateAchieve = async (id) => {
         setNewAchieve(prev => [...prev, id]);
-        const pointsName = user.isTargeted ? 'pointsTarget' : 'pointsUntarget';
-
-        await updateUser({
-            achieves: [...user.achieves, id], 
-            [pointsName]: (user[pointsName] ?? 0) + 5,
-        });
     };
 
     const registrateUser = async (args) => {

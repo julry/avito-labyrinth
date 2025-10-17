@@ -1,12 +1,13 @@
 import { useSizeRatio } from "../../../hooks/useSizeRatio"
 import { InfoScreen } from "../../shared/InfoScreen";
+import { RedStroke3Line } from "../../shared/RedStrokes";
 
 export const InfoWeek2 = () => {
     const ratio = useSizeRatio();
 
     return (
-        <InfoScreen buttonText={"Вперёд"}>
-            <p>Главные ценности Авито — уникальность, открытость, амбициозность и гармония в жизни.</p>
+        <InfoScreen buttonText={"Вперёд"} week={2}>
+            <RedStroke3Line> </RedStroke3Line>
             <p>
                 На этой неделе мы поговорим про принцип открытости.{'\n'}
                 Мы верим, что каждый заслуживает быть услышанным. Но навязчивые мысли — «сиди тихо», «не высовывайся» — часто мешают делиться своим мнением. Хорошая новость: ты можешь шаг за шагом выйти из лабиринтов старых ограничений.{'\n'}

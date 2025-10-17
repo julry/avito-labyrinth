@@ -15,6 +15,10 @@ const TitleWrapper = styled.div`
     gap: var(--spacing_x1);
     font-size: var(--font_xl);
     align-items: center;
+    
+    & h3 {
+        font-weight: 500;
+    }
 `;
 
 export const Lobby1 = ({isDisabled}) => {
