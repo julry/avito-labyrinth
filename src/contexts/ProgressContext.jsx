@@ -1,11 +1,10 @@
-import { createContext, useEffect, useContext, useRef, useState } from 'react'
+import { createContext, useEffect, useContext, useRef, useState, useMemo } from 'react'
 import { FTClient } from 'ft-client';
 import WebApp from '@twa-dev/sdk';
 import { uid } from 'uid';
 import { SCREENS, NEXT_SCREENS } from "../constants/screens";
 import { screens } from "../constants/screensComponents";
 import { getUrlParam } from "../utils/getUrlParam";
-import { useImagePreloader } from '../hooks/useImagePreloader';
 
 const INITIAL_DAY_ACTIVITY = {
     completedAt: null,
@@ -31,7 +30,7 @@ const INITIAL_ENTER_DATA = {
 
 const INITIAL_USER = {
     id: '',
-    name: '',
+    name: 'Test Teston',
     email: '',
     university: '',
     faculty: '',
@@ -50,6 +49,8 @@ const INITIAL_USER = {
     game2Week: INITIAL_ACTIVITY_DATA,
     game3Week: INITIAL_ACTIVITY_DATA,
     game4Week: INITIAL_ACTIVITY_DATA,
+    pointsTarget: 0,
+    pointsUntarget: 0,
 };
 
 const getMoscowTime = (date) => {
@@ -63,21 +64,21 @@ const getMoscowTime = (date) => {
 
 const getCurrentWeek = () => {
     return 1;
-    const today = getMoscowTime();
+    // const today = getMoscowTime();
 
-    if (today < getMoscowTime(new Date(2025, 8, 15))) return 0;
-    if (today < getMoscowTime(new Date(2025, 8, 22))) return 1;
-    if (today < getMoscowTime(new Date(2025, 8, 29))) return 2;
-    if (today < getMoscowTime(new Date(2025, 9, 6))) return 3;
-    if (today < getMoscowTime(new Date(2025, 9, 13))) return 4;
+    // if (today < getMoscowTime(new Date(2025, 8, 15))) return 0;
+    // if (today < getMoscowTime(new Date(2025, 8, 22))) return 1;
+    // if (today < getMoscowTime(new Date(2025, 8, 29))) return 2;
+    // if (today < getMoscowTime(new Date(2025, 9, 6))) return 3;
+    // if (today < getMoscowTime(new Date(2025, 9, 13))) return 4;
 
-    return 5;
+    // return 5;
 }
 
 export const CURRENT_WEEK = getCurrentWeek();
 
 const INITIAL_STATE = {
-    screen: SCREENS.INTRO_REG,
+    screen: SCREENS.INTROREG,
     points: 0,
     weekPoints: 0,
     user: INITIAL_USER,
@@ -93,35 +94,25 @@ export function ProgressProvider(props) {
     const { children } = props
     const [isLoading, setIsLoading] = useState();
     const [currentScreen, setCurrentScreen] = useState();
-    const [points, setPoints] = useState(INITIAL_STATE.points);
-    const [totalPoints, setTotalPoints] = useState(INITIAL_STATE.points);
-    const [weekPoints, setWeekPoints] = useState(INITIAL_STATE.weekPoints);
+    const [totalPoints, setTotalPoints] = useState(INITIAL_STATE.totalPoints);
     const [user, setUser] = useState(INITIAL_STATE.user);
-    const [passedWeeks, setPassedWeeks] = useState(INITIAL_STATE.passedWeeks);
     const [newAchieve, setNewAchieve] = useState([]);
-    const [isJustEntered, setIsJustEntered] = useState(true);
-    const [isShowWeekLobbyInfo, setIsShowWeekLobbyInfo] = useState(false);
     const [tgError, setTgError] = useState({isError: false, message: ''});
     const screen = screens[currentScreen];
-  
+    const lastWeek = useMemo(() => Math.min((user?.passedWeeks?.length ?? 0) + 1, 4), [user?.passedWeeks]);
+
     const client = useRef();
     const recordId = useRef();
     const isDesktop = useRef(false);
     const tgInfo = useRef();
 
-    useImagePreloader([]);
-
     const setUserBdData = (record = {}) => {
         recordId.current = record?.id;
         const { data = {}, scriptData = {}} = record ?? {};
-        const passedWeeksBd = data.passedWeeks ?? [];
-
+        const points = data.isTargeted ? data.pointsTarget : data.pointsUntarget;
 
         setUserInfo(data);
-        setTotalPoints(scriptData?.pointsTotal ?? data.points);
-        setPoints(data.points);
-        setPassedWeeks(passedWeeksBd);
-        setWeekPoints(data[`week${CURRENT_WEEK}Points`]);
+        setTotalPoints(scriptData?.pointsTotal ?? points);
     }
 
     const initProject = async () => {
@@ -144,18 +135,15 @@ export function ProgressProvider(props) {
             setUserBdData(info ?? {});
 
             const {data = {}} = info ?? {};
-            let dataPoints = data?.points ?? 0;
 
             const checkDay = getMoscowTime().getDay();
 
-            //уточнить куда начислять баллы за вход
-            if (data.isTargeted && !data?.[`week${CURRENT_WEEK}EnterPoints`]?.[checkDay]) {
+            if (CURRENT_WEEK > 0 && data.isTargeted && !data?.[`week${CURRENT_WEEK}EnterPoints`]?.[checkDay]) {
                 await updateUser({
-                    points: dataPoints + 50,
-                    [`week${CURRENT_WEEK}Points`]: (data[`week${CURRENT_WEEK}Points`] ?? 0) + 50,
+                    [`week${CURRENT_WEEK}Points`]: (data[`week${CURRENT_WEEK}Points`] ?? 0) + 10,
                     [`week${CURRENT_WEEK}EnterPoints`]: {
                         ...data[`week${CURRENT_WEEK}EnterPoints`], 
-                        [checkDay]: 50,
+                        [checkDay]: 10,
                     }
                 });
             }
@@ -166,6 +154,10 @@ export function ProgressProvider(props) {
                 return;
             }
 
+            if (CURRENT_WEEK > 4) {
+                return;
+            };
+
             if (!info.data.email) {
                 setCurrentScreen(INITIAL_STATE.screen);
                 return;
@@ -174,7 +166,7 @@ export function ProgressProvider(props) {
 
                 return;
             } else {
-                setCurrentScreen(SCREENS.LOBBY);
+                setCurrentScreen(SCREENS[`LOBBY${lastWeek}`]);
             }
         } catch (e) {
             setTgError({isError: true, message: e.message});
@@ -205,79 +197,54 @@ export function ProgressProvider(props) {
 
         return ({data: INITIAL_USER});
         
-        if (window?.location?.hostname === 'localhost' || !!getUrlParam('screen')) {
-            return client.current.findRecord('id', DEV_ID);
-        } else {
-            console.log('webAppInitData', webAppInitData);
-        } 
+        // if (window?.location?.hostname === 'localhost' || !!getUrlParam('screen')) {
+        //     return client.current.findRecord('id', DEV_ID);
+        // } else {
+        //     console.log('webAppInitData', webAppInitData);
+        // } 
 
-        if (
-            WebApp?.platform?.toLowerCase()?.includes('web') || WebApp?.platform?.toLowerCase()?.includes('desktop')
-            || webApp?.platform?.toLowerCase()?.includes('web') || webApp?.platform?.toLowerCase()?.includes('desktop')
-        ) {
-                isDesktop.current = true;
+        // if (
+        //     WebApp?.platform?.toLowerCase()?.includes('web') || WebApp?.platform?.toLowerCase()?.includes('desktop')
+        //     || webApp?.platform?.toLowerCase()?.includes('web') || webApp?.platform?.toLowerCase()?.includes('desktop')
+        // ) {
+        //         isDesktop.current = true;
 
-                return {};
-        }
+        //         return {};
+        // }
     
-        if (webAppInitData) {
-            return client.current.getTgRecord(webAppInitData);
-        } else if (initData) {
-            return client.current.getTgRecord(initData);
-        } else if (!window?.Telegram) {
-            console.error('Telegram не определен')
+        // if (webAppInitData) {
+        //     return client.current.getTgRecord(webAppInitData);
+        // } else if (initData) {
+        //     return client.current.getTgRecord(initData);
+        // } else if (!window?.Telegram) {
+        //     console.error('Telegram не определен')
 
-            throw new Error('Telegram не определен')
-        } else if (!window?.Telegram?.WebApp) {
-            console.error('Webapp не определен')
+        //     throw new Error('Telegram не определен')
+        // } else if (!window?.Telegram?.WebApp) {
+        //     console.error('Webapp не определен')
 
-            throw new Error('Webapp не определен')
-        } else {
-            console.error('В WebApp нет данных пользователя')
+        //     throw new Error('Webapp не определен')
+        // } else {
+        //     console.error('В WebApp нет данных пользователя')
 
-            throw new Error ('В WebApp нет данных пользователя');
-        }
+        //     throw new Error ('В WebApp нет данных пользователя');
+        // }
     }
 
     const next = (customScreen) => {
-        const nextScreen = customScreen ?? NEXT_SCREENS[currentScreen]
+        const nextScreen = customScreen ?? NEXT_SCREENS[currentScreen];
 
         if (!nextScreen) {
             return
         }
 
-        setCurrentScreen(nextScreen)
+        setCurrentScreen(nextScreen);
     }
 
     const setUserInfo = (user) => {
         setUser(prev => ({ ...prev, ...user }));
     }
 
-    const readWeekLetter = (week) => {
-        updateUser(({readenLetters: {...user.readenLetters, [`week${week}`]: true}})).catch(() => {});
-    }
-
-    const readLifehack = (week, day) => {
-        updateUser(({lifehacks: [...user.lifehacks, `week${week}day${day}`]})).catch(() => {});
-    }
-
-    const addDayFinding = (id) => {
-        updateUser(({findings: [...user.findings, id]})).catch(() => {});
-    }
-
-    const dropGame = async ({gameName, day, tries}) => {
-        if (user[gameName][day].isCompleted) return;
-
-        await updateUser(
-            {
-                [gameName]: { ...user[gameName], [day]: {
-                    ...user[gameName][day],
-                    tries,
-                }},
-            }
-        );
-    }
-    
     const formatDate = (date) => new Intl.DateTimeFormat('ru-RU', {
         day: '2-digit',
         month: '2-digit',
@@ -287,37 +254,32 @@ export function ProgressProvider(props) {
         hour12: false
     }).format(date).replace(',', '');
 
-    const endGame = async ({finishPoints, week, level, addictiveData, achieve}) => {
+    const endGame = async ({ week, level, addictiveData, achieve}) => {
         const newAchieves = [];
-        let totalGamePoints = 10;
         const achieveCost = 5;
-        if (user[`game${week}Week`]?.[`level${level}`]?.isCompleted) return;
-
-        if (week === CURRENT_WEEK) {
-            setWeekPoints(prev => prev + finishPoints);
-        }
+        const totalGamePoints = user?.isTargeted ? 10 : 0;
+        if (user[`game${week}Week`]?.[level]?.isCompleted) return;
 
         const endTimeMsc = getMoscowTime();
 
         if (achieve !== undefined) {
             newAchieves.push(achieve);
-            totalGamePoints += achieveCost;
         }
 
         if (newAchieves.length) { 
             setNewAchieve(prev => [...prev, ...newAchieves]);
         }
 
+        const pointsName = user.isTargeted ? 'pointsTarget' : 'pointsUntarget';
+
         await updateUser(
             {
                 [`week${week}Points`]: (user[`week${week}Points`] ?? 0) + totalGamePoints,
-                [`game${week}Week`]: { ...user[`game${week}Week`], [`level${level}`]: {
+                [`game${week}Week`]: { ...user[`game${week}Week`], [level]: {
                     isCompleted: true,
                     completedAt: formatDate(endTimeMsc),
-                    // points: finishPoints
                 }},
-                //уточнить идут ли все пойнтсы в глобальные
-                points: (user.points ?? 0) + totalGamePoints,
+                [pointsName]: (user[pointsName] ?? 0) + achieveCost,
                 achieves: newAchieves.length > 0 ? [...user.achieves, ...newAchieves] : user.achieves,
                 ...addictiveData,
             }
@@ -354,22 +316,23 @@ export function ProgressProvider(props) {
         }
     }
 
-    const registrateAchieve = async (id, week) => {
+    const registrateAchieve = async (id) => {
         setNewAchieve(prev => [...prev, id]);
+        const pointsName = user.isTargeted ? 'pointsTarget' : 'pointsUntarget';
+
         await updateUser({
             achieves: [...user.achieves, id], 
-            //уточнить идут ли все пойнтсы в глобальные
-            points: user.points + (user?.isTargeted ? 0 : 5),
-            //уточнить в какую неделю идут пойнты за ачивы
-            [`week${CURRENT_WEEK}Points`]: user.points + 5,
+            [pointsName]: (user[pointsName] ?? 0) + 5,
         });
     };
 
     const registrateUser = async (args) => {
+        const pointsName = user.isTargeted ? 'pointsTarget' : 'pointsUntarget';
+
         const data = {
             ...user,
             achieves: [],
-            points: 0,
+            [pointsName]: (user[pointsName] ?? 0) + 10,
             passedWeeks: [],
             id: uid(),
             ...args,
@@ -395,21 +358,13 @@ export function ProgressProvider(props) {
     const state = {
         screen,
         currentScreen,
-        points,
         next,
         setUserInfo,
         user,
-        weekPoints,
-        setWeekPoints,
-        setPoints,
-        passedWeeks,
-        setPassedWeeks,
         endGame,
         updateUser,
         registrateUser,
         totalPoints,
-        readWeekLetter,
-        addDayFinding,
         isLoading,
         patchData,
         tgError,
@@ -417,13 +372,8 @@ export function ProgressProvider(props) {
         registrateAchieve,
         setNewAchieve,
         newAchieve,
-        dropGame,
-        isJustEntered,
-        setIsJustEntered,
-        readLifehack,
-        isShowWeekLobbyInfo,
-        setIsShowWeekLobbyInfo,
         updateTotalPoints,
+        lastWeek,
         tgInfo,
     }
 

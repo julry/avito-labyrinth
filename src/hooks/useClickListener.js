@@ -91,19 +91,19 @@ export function useClickListener({active, targetRef, prevent, onStart, onMove, o
     useEffect(() => {
         if (active && targetRef?.current) {
             if (isTouch) {
-                targetRef.current.addEventListener("touchstart", handleTouchStart);
-                targetRef.current.addEventListener("touchmove", handleTouchMove);
-                targetRef.current.addEventListener("touchend", handleTouchEnd);
+                targetRef.current?.addEventListener("touchstart", handleTouchStart);
+                targetRef.current?.addEventListener("touchmove", handleTouchMove);
+                targetRef.current?.addEventListener("touchend", handleTouchEnd);
 
                 return () => {
-                    targetRef.current.removeEventListener("touchstart", handleTouchStart);
-                    targetRef.current.removeEventListener("touchmove", handleTouchMove);
-                    targetRef.current.removeEventListener("touchend", handleTouchEnd);
+                    targetRef.current?.removeEventListener("touchstart", handleTouchStart);
+                    targetRef.current?.removeEventListener("touchmove", handleTouchMove);
+                    targetRef.current?.removeEventListener("touchend", handleTouchEnd);
                 };
             } else {
-                targetRef.current.addEventListener("mousedown", handleMouseDown);
-                targetRef.current.addEventListener("mousemove", handleMouseMove);
-                targetRef.current.addEventListener("mouseup", handleMouseUp);
+                targetRef.current?.addEventListener("mousedown", handleMouseDown);
+                targetRef.current?.addEventListener("mousemove", handleMouseMove);
+                targetRef.current?.addEventListener("mouseup", handleMouseUp);
 
                 return () => {
                     targetRef.current?.removeEventListener?.("mousedown", handleMouseDown);

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { SizeRatioContextProvider } from '../contexts/SizeRatioContext';
 import WebApp from '@twa-dev/sdk';
+import { CookieInfo } from './shared/CookieInfo';
 
 export const TARGET_WIDTH = 375;
 export const TARGET_HEIGHT = 677;
@@ -106,10 +107,9 @@ export function ScreenTemplate(props) {
                     <WrapperInner ref={wrapperInnerRef}>
                         <Content $sizeRatio={sizeRatio} id="content">
                             {children}
-                            {/* <LabyrinthGame /> */}
-                            {/* {isShowCookies && 
+                            {isShowCookies && 
                                 <CookieInfo onClose={handleCloseCookie} />
-                            } */}
+                            }
                         </Content>
                     </WrapperInner>
                 </Wrapper>

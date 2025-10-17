@@ -1,34 +1,62 @@
 import styled from "styled-components";
-import { useSizeRatio } from "../../hooks/useSizeRatio"
+import { useSizeRatio } from "../../hooks/useSizeRatio";
+import bgImage from '../../assets/images/introBg.svg?url';
 import { FlexWrapper } from "./ContentWrapper";
 import { Logo } from "./Logo";
 import { Button } from "./Button";
+import {Block} from './Block';
 
 const Wrapper = styled(FlexWrapper)`
     justify-content: center;
+    background: url(${() => '"' + bgImage + '"'}) no-repeat center center;
+    background-size: cover;
 `;
 
-const Content = styled(FlexWrapper)`
-    padding: var(--spacing_x4) var(--spacing_x3) calc(var(--spacing_x6) + var(--spacing_x1) / 2);
-`;
+
 
 const LogoStyled = styled(Logo)`
+    align-self: flex-start;
+    justify-self: flex-start;
     width: ${({$ratio}) => $ratio * 142}px;
     height: ${({$ratio}) => $ratio * 53}px;
 `;
 
-export const BrightScreen = ({buttonText, onClick, hasLogo = true, isDisabledButton, ...props}) => {
+const BlockStyled = styled(Block)`
+    width: ${({$width}) => $width}px;
+    height: ${({$height}) => $height}px;
+    margin: auto;
+    padding: var(--spacing_x4) var(--spacing_x3) calc(var(--spacing_x6) + var(--spacing_x1) / 2);
+
+    & > div {
+        padding: 0;
+    }
+`;
+
+const ContentWrapper = styled(FlexWrapper)`
+    height: auto;
+    flex: 1;
+`;
+
+export const BrightScreen = ({buttonText, blockSize, svgComponent, onClick, hasLogo = true, isDisabledButton, ...props}) => {
     const ratio = useSizeRatio();
 
     return (
         <Wrapper>
-            <Content {...props}>
+            <BlockStyled
+                {...props}
+                $ratio={ratio} 
+                svgComponent={svgComponent}
+                $width={(blockSize?.width ?? 360) * ratio}
+                $height={(blockSize?.height ?? 0) * ratio }
+            >
                 {hasLogo && (
                     <LogoStyled $ratio={ratio}/>
                 )}
-                {props.children}
+                <ContentWrapper>
+                    {props.children}
+                </ContentWrapper>
                 <Button onClick={onClick} disabled={isDisabledButton}>{buttonText}</Button>
-            </Content>
+            </BlockStyled>
         </Wrapper>
     )
 }

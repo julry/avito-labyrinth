@@ -24,7 +24,8 @@ export default defineConfig([
     },
     rules: {
       'no-unused-vars': ['warn', { varsIgnorePattern: '^[A-Z_]' }],
-      'no-irregular-whitespace': ['off']
+      'no-irregular-whitespace': ['off'],
+      'react-refresh/only-export-components': ['off'],
     },
   },
 ])

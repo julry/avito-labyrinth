@@ -5,8 +5,12 @@ const Wrapper = styled(motion.div)`
     position: absolute;
     inset: 0;
     z-index: 1000;
-    background: ${({ $isDarken }) => $isDarken ? 'rgba(36, 38, 50, 0.7)' : 'transparent'};
     will-change: opacity;
+    background: rgba(100, 88, 144, 0.5);
+    backdrop-filter: blur(4.1px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const Modal = ({ isDarken, isOpen, isDisabledAnimation, ...props }) => (

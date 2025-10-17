@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import styled, { keyframes } from 'styled-components';
 import { useProgress } from "../contexts/ProgressContext";
 import { FlexWrapper } from "./shared/ContentWrapper";
+import { screens } from "../constants/screensComponents";
 
 const Wrapper = styled.div`
     position: relative;
@@ -51,10 +52,10 @@ export function ScreenContent() {
     const { screen, isLoading, tgError } = useProgress();
     const Screen = useMemo(() => screen, [screen]);
 
-    if (tgError.isError) return (
+    if (tgError?.isError) return (
         <div>
             Ошибка инициализации. {'\n\n'}
-            {tgError.message}
+            {tgError?.message}
         </div>
     )
 

@@ -3,29 +3,45 @@ import { useSizeRatio } from "../../hooks/useSizeRatio";
 
 const Wrapper = styled.div`
     position: relative;
+    text-align: center;
+    border-radius: var(--border-radius-lg);
+    color: #000000;
+    width: calc(var(--content-width) + var(--spacing_x1));
+`;
+
+const SvgWrapper = styled.div`
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+`;
+
+const Content = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: var(--spacing_x3);
-    gap: var(--spacing_x2);
-    text-align: center;
-
-    background: #EFF3FF;
+    gap: calc(2.5 * var(--spacing_x1));
+    background: #FFFFFF;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
     border-radius: var(--border-radius-lg);
-    padding: var(--spacing_x3);
-    padding-top: ${({$hasCloseIcon}) => $hasCloseIcon ? 'var(--spacing_x6)' : 'var(--spacing_x3)'};
-    color: var(--color-black);
-    width: var(--content-width);
+
+    padding: ${({$ratio}) => $ratio * 14}px ${({$ratio}) => $ratio * 17}px;
 `;
 
-
-export const Block = ({hasCloseIcon, onClose, children, ...props}) => {
+export const Block = ({svgComponent, children, ...props}) => {
     const ratio = useSizeRatio();
 
     return (
-        <Wrapper {...props} $hasCloseIcon={hasCloseIcon} $ratio={ratio}>
-            {children}
+        <Wrapper $ratio={ratio} {...props}>
+            <Content $ratio={ratio}>
+                {children}
+            </Content>
+            {svgComponent && <SvgWrapper>
+                {svgComponent}
+            </SvgWrapper>}
         </Wrapper>
     )
 }

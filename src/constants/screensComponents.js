@@ -2,6 +2,7 @@ import { AchievesScreen } from "../components/screens/AchievesScreen";
 import { AwardsScreen } from "../components/screens/AwardsScreen";
 import { IntroRegistration } from "../components/screens/IntroRegistration";
 import { IntroRules } from "../components/screens/IntroRules";
+import { ProfileScreen } from "../components/screens/ProfileScreen";
 import { Registration } from "../components/screens/Registration";
 import { WaitingGameScreen } from "../components/screens/Waiting";
 import { 
@@ -23,10 +24,12 @@ import {
 import { SCREENS } from "./screens";
 
 export const screens = {
-    [SCREENS.INTRO_REG]: IntroRegistration,
+    [SCREENS.INTROREG]: IntroRegistration,
+    [SCREENS.INTRO_RULES]: IntroRules,
     [SCREENS.REG]: Registration,
     [SCREENS.ACHIEVES]: AchievesScreen,
     [SCREENS.AWARDS]: AwardsScreen,
+    [SCREENS.PROFILE]: ProfileScreen,
     [SCREENS.WAITING]: WaitingGameScreen,
     [SCREENS.INTRO_RULES]: IntroRules,
     [SCREENS.ADVICE11]: Advice11,

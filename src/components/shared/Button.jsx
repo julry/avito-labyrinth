@@ -6,7 +6,7 @@ const Wrapper = styled.button`
     color: ${({$type}) => 'var(--btn-color-' + $type + ')'};
     font-size: var(--font_xl); 
 
-    padding: ${({$ratio}) => $ratio * 13}px 0 ${({$ratio}) => $ratio * 21}px;
+    padding: ${({$ratio}) => $ratio * 15}px 0 ${({$ratio}) => $ratio * 19}px;
     width: 100%;
     max-width: var(--content-width);
     height: ${({$ratio}) => $ratio * 58}px;

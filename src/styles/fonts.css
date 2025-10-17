@@ -14,18 +14,18 @@
 }
 @font-face {
     font-family: 'Aeroport';
-    src: url('../assets/fonts/Aeroport.woff2') format('woff2'),
+    src: url('../assets/fonts/Aeroport-regular.ttf') format('truetype'),
     local('Aeroport'), local('AeroportRegular'), local('Aeroport-Regular'), local('Aeroport-regular');
     font-weight: 400;
     font-style: normal;
 }
-/* @font-face {
+@font-face {
     font-family: 'Aeroport';
-    src: url('../assets/fonts/Aeroport-Black.woff2') format('woff2'),
+    src: url('../assets/fonts/Aeroport-Black.ttf') format('truetype'),
      local('AeroportBlack'), local('Aeroport-Black'), local('Aeroport-black');
     font-weight: 900;
     font-style: normal;
-} */
+}
 
 @font-face {
     font-family: 'Aeroport';
