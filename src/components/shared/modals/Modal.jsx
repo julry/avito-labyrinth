@@ -9,6 +9,7 @@ const Wrapper = styled(motion.div)`
     background: rgba(100, 88, 144, 0.5);
     backdrop-filter: blur(4.1px);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 `;

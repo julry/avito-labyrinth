@@ -63,16 +63,15 @@ const getMoscowTime = (date) => {
 }
 
 const getCurrentWeek = () => {
-    return 2;
-    // const today = getMoscowTime();
+    const today = getMoscowTime();
 
-    // if (today < getMoscowTime(new Date(2025, 8, 15))) return 0;
-    // if (today < getMoscowTime(new Date(2025, 8, 22))) return 1;
-    // if (today < getMoscowTime(new Date(2025, 8, 29))) return 2;
-    // if (today < getMoscowTime(new Date(2025, 9, 6))) return 3;
-    // if (today < getMoscowTime(new Date(2025, 9, 13))) return 4;
+    if (today < getMoscowTime(new Date(2025, 10, 10))) return 0;
+    if (today < getMoscowTime(new Date(2025, 10, 27))) return 1;
+    if (today < getMoscowTime(new Date(2025, 10, 24))) return 2;
+    if (today < getMoscowTime(new Date(2025, 11, 1))) return 3;
+    if (today < getMoscowTime(new Date(2025, 11, 8))) return 4;
 
-    // return 5;
+    return 5;
 }
 
 export const CURRENT_WEEK = getCurrentWeek();
@@ -96,7 +95,7 @@ export function ProgressProvider(props) {
     const [currentScreen, setCurrentScreen] = useState();
     const [totalPoints, setTotalPoints] = useState(INITIAL_STATE.totalPoints);
     const [user, setUser] = useState(INITIAL_STATE.user);
-    const [newAchieve, setNewAchieve] = useState([]);
+    const [newAchieve, setNewAchieve] = useState();
     const [tgError, setTgError] = useState({isError: false, message: ''});
     const screen = screens[currentScreen];
     const lastWeek = useMemo(() => Math.min((user?.passedWeeks?.length ?? 0) + 1, 4), [user?.passedWeeks]);
@@ -183,11 +182,11 @@ export function ProgressProvider(props) {
 
         initProject().catch((e) => console.log(e));
 
-        if (WebApp) {
-            WebApp.ready();
-            WebApp.expand();
-            WebApp.lockOrientation();
-        }
+        // if (WebApp) {
+        //     WebApp.ready();
+        //     WebApp.expand();
+        //     WebApp.lockOrientation();
+        // }
     }, []);
 
     const loadRecord = () => {
@@ -254,20 +253,16 @@ export function ProgressProvider(props) {
         hour12: false
     }).format(date).replace(',', '');
 
-    const endGame = async ({ week, level, addictiveData, achieve}) => {
-        const newAchieves = [];
+    const endGame = async ({ week, level, achieve}) => {
         const achieveCost = 5;
         const totalGamePoints = user?.isTargeted ? 10 : 0;
         if (user[`game${week}Week`]?.[level]?.isCompleted) return;
 
+
         const endTimeMsc = getMoscowTime();
 
         if (achieve !== undefined) {
-            newAchieves.push(achieve);
-        }
-
-        if (newAchieves.length) { 
-            setNewAchieve(prev => [...prev, ...newAchieves]);
+            setNewAchieve(achieve);
         }
 
         const pointsName = user.isTargeted ? 'pointsTarget' : 'pointsUntarget';
@@ -280,8 +275,8 @@ export function ProgressProvider(props) {
                     completedAt: formatDate(endTimeMsc),
                 }},
                 [pointsName]: (user[pointsName] ?? 0) + achieveCost,
-                achieves: newAchieves.length > 0 ? [...user.achieves, ...newAchieves] : user.achieves,
-                ...addictiveData,
+                achieves: achieve !== undefined ? [...user.achieves, achieve] : user.achieves,
+                passedWeeks: level === 3 ? [...(user.passedWeeks ?? []), week] : user.passedWeeks,
             }
         );
 
@@ -306,7 +301,7 @@ export function ProgressProvider(props) {
         if (!recordId.current) return;
         
         try {
-            const result = await client.current.patchRecord(recordId.current, changed);
+            const result = await client.current?.patchRecord(recordId.current, changed);
 
             return result;
         } catch (e) {
@@ -316,26 +311,26 @@ export function ProgressProvider(props) {
         }
     }
 
-    const registrateAchieve = async (id) => {
-        setNewAchieve(prev => [...prev, id]);
+    const registrateAchieve =  (id) => {
+        setNewAchieve(id);
     };
 
     const registrateUser = async (args) => {
-        const pointsName = user.isTargeted ? 'pointsTarget' : 'pointsUntarget';
+        const pointsName = args.isTargeted ? 'pointsTarget' : 'pointsUntarget';
 
         const data = {
             ...user,
             achieves: [],
             [pointsName]: (user[pointsName] ?? 0) + 10,
             passedWeeks: [],
-            id: uid(),
+            id: uid(8),
             ...args,
         }
 
         setUser(data);
 
         try {
-            const record = await client?.current.patchRecord(recordId.current, data);
+            const record = await client?.current?.patchRecord(recordId.current, data);
 
             return record; 
         } catch (e) {
@@ -344,7 +339,7 @@ export function ProgressProvider(props) {
     };
 
     const checkEmailRegistrated = async (email) =>{
-        const record = await client?.current.findRecord('email', email);
+        const record = await client?.current?.findRecord('email', email);
 
         return !!record?.id;
     };

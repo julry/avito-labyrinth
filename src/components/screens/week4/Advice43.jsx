@@ -3,11 +3,10 @@ import { useSizeRatio } from "../../../hooks/useSizeRatio"
 import { InfoScreen } from "../../shared/InfoScreen";
 
 export const Advice43 = () => {
-    const { next, registrateAchieve } = useProgress();
+    const { next } = useProgress();
     const ratio = useSizeRatio();
     
     const handleClick = () => {
-        // registrateAchieve([8]);
         next();
     }
     

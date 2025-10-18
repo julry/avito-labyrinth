@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { COLUMNS_SIZE, ROWS_SIZE } from "./constants";
 
 export const useGame = ({onEndGame, initialPosition, maze, finalPosition}) => {
     const [playerPosition, setPlayerPosition] = useState(initialPosition);
@@ -83,7 +82,7 @@ export const useGame = ({onEndGame, initialPosition, maze, finalPosition}) => {
 
             while(true) {
                 if (newX === finalPosition.x && newY === finalPosition.y) {
-                        onEndGame?.();
+                        setTimeout(() => onEndGame?.(), 150);
                         isCurrentMoving.current = false;
                      break;
                 }
@@ -165,7 +164,7 @@ export const useGame = ({onEndGame, initialPosition, maze, finalPosition}) => {
 
         if (newX === finalPosition.x && newY === finalPosition.y) {
             setIsFinished(true);
-            onEndGame?.();
+            setTimeout(() => onEndGame?.(), 150);
         }
     };
 
