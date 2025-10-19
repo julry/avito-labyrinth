@@ -63,6 +63,7 @@ const getMoscowTime = (date) => {
 }
 
 const getCurrentWeek = () => {
+    // return 1;
     const today = getMoscowTime();
 
     if (today < getMoscowTime(new Date(2025, 10, 10))) return 0;
@@ -254,14 +255,16 @@ export function ProgressProvider(props) {
     }).format(date).replace(',', '');
 
     const endGame = async ({ week, level, achieve}) => {
-        const achieveCost = 5;
+        const hasAchieve = achieve !== undefined;
+
+        const achieveCost = hasAchieve ? 5 : 0;
         const totalGamePoints = user?.isTargeted ? 10 : 0;
         if (user[`game${week}Week`]?.[level]?.isCompleted) return;
 
 
         const endTimeMsc = getMoscowTime();
 
-        if (achieve !== undefined) {
+        if (hasAchieve) {
             setNewAchieve(achieve);
         }
 
@@ -275,7 +278,7 @@ export function ProgressProvider(props) {
                     completedAt: formatDate(endTimeMsc),
                 }},
                 [pointsName]: (user[pointsName] ?? 0) + achieveCost,
-                achieves: achieve !== undefined ? [...user.achieves, achieve] : user.achieves,
+                achieves: hasAchieve ? [...user.achieves, achieve] : user.achieves,
                 passedWeeks: level === 3 ? [...(user.passedWeeks ?? []), week] : user.passedWeeks,
             }
         );

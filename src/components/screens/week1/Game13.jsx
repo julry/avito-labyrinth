@@ -46,7 +46,7 @@ export const Game13 = () => {
             initialPosition={{x: 4, y: 1}}
             finalPosition={{x: 3, y: 16}}
             boardSvg={
-                <svg width="334" height="525" viewBox="0 0 334 525" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="100%" height="100%" viewBox="0 0 334 525" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 483V42C2 19.9086 19.9086 2 42 2L291.5 2C313.591 2 331.5 19.9086 331.5 42V483C331.5 505.091 313.591 523 291.5 523H42C19.9086 523 2 505.091 2 483Z" fill="#CEEFFF" stroke="#00AAFF" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
                 <mask id="mask0_239_4526" style={{maskType: 'alpa'}} maskUnits="userSpaceOnUse" x="0" y="0" width="334" height="525">
                 <path d="M2 483V42C2 19.9086 19.9086 2 42 2L291.5 2C313.591 2 331.5 19.9086 331.5 42V483C331.5 505.091 313.591 523 291.5 523H42C19.9086 523 2 505.091 2 483Z" fill="#E3D1FF" stroke="#955EEB" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>

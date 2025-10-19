@@ -49,7 +49,7 @@ export const InfoWeek1 = () => {
                         </svg>
                     }  
                     svgProps={{width: 156 * ratio, height: 16 * ratio, left: -1*ratio, top: 4 * ratio}} 
-                />, где голос каждого{' '}
+                />, где голос каждого{'\n'}
                 <MarkeredText 
                     text="имеет значение"
                     svgElement={
