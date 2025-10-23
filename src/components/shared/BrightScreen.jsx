@@ -13,12 +13,12 @@ const Wrapper = styled(FlexWrapper)`
 `;
 
 
-
 const LogoStyled = styled(Logo)`
     align-self: flex-start;
     justify-self: flex-start;
     width: ${({$ratio}) => $ratio * 142}px;
     height: ${({$ratio}) => $ratio * 53}px;
+    flex-shrink: 0;
 `;
 
 const BlockStyled = styled(Block)`
@@ -28,6 +28,7 @@ const BlockStyled = styled(Block)`
     padding: var(--spacing_x4) var(--spacing_x3) calc(var(--spacing_x6) + var(--spacing_x1) / 2);
 
     & > div {
+        background: transparent;
         padding: 0;
     }
 `;
@@ -50,7 +51,7 @@ export const BrightScreen = ({buttonText, blockSize, svgComponent, onClick, hasL
                 $height={(blockSize?.height ?? 0) * ratio }
             >
                 {hasLogo && (
-                    <LogoStyled $ratio={ratio}/>
+                    <LogoStyled $ratio={ratio} hasBg={false}/>
                 )}
                 <ContentWrapper>
                     {props.children}

@@ -1,43 +1,14 @@
-import styled from "styled-components";
 import { useSizeRatio } from "../../../hooks/useSizeRatio"
-import { BrightScreen } from "../../shared/BrightScreen";
-import { RedStroke1Line } from "../../shared/RedStrokes";
 import { MarkeredText } from '../../shared/Texts';
-import { useProgress } from "../../../contexts/ProgressContext";
-import { NewAchieveModal } from '../../shared/modals';
-
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: calc(var(--spacing_x1) * 2.5);
-    padding-left: var(--spacing_x4);
-    padding-right: var(--spacing_x4);
-    font-size: var(--font_xl);
-
-    & > div:first-child{
-        font-size: var(--font_xl);
-    }
-`;
+import { EndWeek } from "../EndWeek";
 
 export const EndWeek1 = () => {
-    const { next, newAchieve, setNewAchieve } = useProgress();
     const ratio = useSizeRatio();
 
     return (
-        <>
-            <BrightScreen
-                svgComponent={
-                    <svg width="100%" height="100%" viewBox="0 0 359 426" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M63.5468 425.648C19.3467 425.648 9.69481 408.566 8.39853 399.94C-4.90246 311.432 1.05133 269.585 3.18089 218.784C5.0238 174.82 10.5633 71.0716 10.5633 34.6931C10.5633 -1.68552 63.5468 -0.750122 91.6834 0.375C119.82 1.50012 284.994 1.83716 317.223 4.4624C355.701 7.59668 358.072 39.0752 355.073 65.0533C352.535 87.0472 355.073 206.596 355.073 234.103C355.073 271.79 365.323 376.026 352.703 407.99C350.68 413.112 345.382 416.753 336.212 418.458C282.678 428.412 110.717 425.648 63.5468 425.648Z" fill="white" />
-                    </svg>
-                }
-                blockSize={{ height: 426, width: 359 }}
-                onClick={() => next()}
-                buttonText={"Продолжить путь"}
+            <EndWeek
+                number={'I'}
             >
-                <Wrapper>
-                    <RedStroke1Line>Глава I завершена</RedStroke1Line>
                     <p>Обрести свой голос бывает непросто, но ты уверенно движешься вперёд. Каждый шаг делает тебя{' '}
                         <MarkeredText
                             text="ближе"
@@ -69,9 +40,6 @@ export const EndWeek1 = () => {
                             svgProps={{ width: 186 * ratio, height: 20 * ratio, left: -5 * ratio, top: 5 * ratio }}
                         />
                     </p>
-                </Wrapper>
-            </BrightScreen>
-            <NewAchieveModal isOpen={newAchieve !== undefined} achieveId={newAchieve} onClose={() => { setNewAchieve() }} />
-        </>
+            </EndWeek>
     )
 }

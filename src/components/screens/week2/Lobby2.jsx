@@ -119,7 +119,7 @@ export const Lobby2 = () => {
 
     return (
         <Lobby
-            week={1}
+            week={2}
             titleComponent={
                 <TitleWrapper>
                     <h3>Глава II</h3>

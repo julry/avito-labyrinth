@@ -45,13 +45,18 @@ export const InfoScreen = ({buttonText, week = 1, onClick, hasLogo = true, isDis
     const { next } = useProgress();
     const ratio = useSizeRatio();
 
+    const handleNext = () => {
+        onClick?.();
+        next();
+    }
+
     return (
          <Wrapper {...props} $bg={`${WEEK_TO_BG[week]}`}>
             <Content>
                 <Block>
                     {props.children}
                 </Block>
-                <Button onClick={() => next()} disabled={isDisabledButton}>{buttonText}</Button>
+                <Button onClick={handleNext} disabled={isDisabledButton}>{buttonText}</Button>
             </Content>
             {hasLogo && (
                 <LogoStyled $ratio={ratio}/>

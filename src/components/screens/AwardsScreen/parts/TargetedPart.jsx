@@ -199,7 +199,7 @@ export const TargetedPart = () => {
                                 Для участия в розыгрыше нужно пройти все уровни Глав I–IV. Копи баллы и увеличивай шансы на победу
                             </InfoTitle>
                             <InfoRow $ratio={ratio}><PurpleText>+10 б.</PurpleText>за регистрацию в игре </InfoRow>
-                            <InfoRow $ratio={ratio}><PurpleText>+10 б.</PurpleText>за приглашение 1 друга из своего факультета (max 5)</InfoRow>
+                            <InfoRow $ratio={ratio}><PurpleText>+10 б.</PurpleText>за приглашение 1 друга со своего факультета (max 5)</InfoRow>
                             <InfoRow $ratio={ratio}><PurpleText>+10 б.</PurpleText>за подписку на Телеграм-канал @futru</InfoRow>
                             <InfoRow $ratio={ratio}><PurpleText>+5 б.</PurpleText>за каждое достижение в игре (max 9)</InfoRow>
                             <ChancesInfoWrapper $mt={ratio * 10}>
