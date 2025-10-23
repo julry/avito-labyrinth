@@ -1,19 +1,13 @@
 import { useSizeRatio } from "../../../hooks/useSizeRatio"
 import { InfoScreen } from "../../shared/InfoScreen";
-import { useProgress } from '../../../contexts/ProgressContext';
 import { RedStroke1Line } from "../../shared/RedStrokes";
 import { MarkeredText } from '../../shared/Texts';
 
 export const EndLevel23 = () => {
-    const { next } = useProgress();
     const ratio = useSizeRatio();
 
-    const handleClick = () => {
-        next();
-    }
-
     return (
-        <InfoScreen buttonText={"Далее"} onClick={handleClick}>
+        <InfoScreen buttonText={"Далее"} week={2}>
             <RedStroke1Line>Еще один лабиринт позади!</RedStroke1Line>
             <p>
                 В Авито мы считаем, что важно сохранять{' '}

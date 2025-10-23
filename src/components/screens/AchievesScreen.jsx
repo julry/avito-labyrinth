@@ -116,7 +116,7 @@ export const AchievesScreen = ({ onClose, initialShown, isFirst }) => {
     const ratio = useSizeRatio();
     const [shownAchieve, setShownAchieve] = useState(initialShown);
     const [shownFirstAchieve, setShownFirstAchieve] = useState(isFirst ? achievements[0] : null);
-    const { user, next, lastWeek } = useProgress();
+    const { user, next } = useProgress();
     const achieves = [...new Set(user.achieves ?? [])];
     
     const handleOpenAchieve = (achieve, isOpen) => {
@@ -131,7 +131,7 @@ export const AchievesScreen = ({ onClose, initialShown, isFirst }) => {
             return;
         }
 
-        next(SCREENS[`LOBBY${lastWeek}`]);
+        next(SCREENS[`LOBBY${user.currentWeek}`]);
     }
 
     const getAchieve = (isOpen, achieve) => (

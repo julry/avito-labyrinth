@@ -13,7 +13,7 @@ export const InfoWeek2 = () => {
     }
 
     return (
-        <InfoScreen buttonText={"Вперёд"} week={2} onClick={handleNext}>
+        <InfoScreen buttonText={"Готов"} week={2} onClick={handleNext}>
             <RedStroke1Line>Мы продолжаем путешествие! </RedStroke1Line>
             <p>
                На этой неделе поговорим о силе{' '}

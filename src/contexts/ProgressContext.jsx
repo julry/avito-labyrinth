@@ -30,7 +30,8 @@ const INITIAL_ENTER_DATA = {
 
 const INITIAL_USER = {
     id: '',
-    name: 'Test Teston',
+    name: 'Test',
+    surname: 'Teston',
     email: '',
     university: '',
     faculty: '',
@@ -41,6 +42,9 @@ const INITIAL_USER = {
     week3Points: 0,
     week4Points: 0,
     achieves: [],
+    regPoints: 10,
+    regDate: '12.12.2025',
+    achievePoints: 0,
     week1EnterPoints: INITIAL_ENTER_DATA,
     week2EnterPoints: INITIAL_ENTER_DATA,
     week3EnterPoints: INITIAL_ENTER_DATA,
@@ -49,8 +53,7 @@ const INITIAL_USER = {
     game2Week: INITIAL_ACTIVITY_DATA,
     game3Week: INITIAL_ACTIVITY_DATA,
     game4Week: INITIAL_ACTIVITY_DATA,
-    pointsTarget: 0,
-    pointsUntarget: 0,
+    currentWeek: 1,
 };
 
 const getMoscowTime = (date) => {
@@ -88,6 +91,7 @@ const INITIAL_STATE = {
 const ProgressContext = createContext(INITIAL_STATE);
 
 const API_LINK = import.meta.env.VITE_API_URL;
+const API_NAME = import.meta.env.VITE_API_NAME;
 const DEV_ID = import.meta.env.VITE_DEV_ID;
 
 export function ProgressProvider(props) {
@@ -99,7 +103,6 @@ export function ProgressProvider(props) {
     const [newAchieve, setNewAchieve] = useState();
     const [tgError, setTgError] = useState({isError: false, message: ''});
     const screen = screens[currentScreen];
-    const lastWeek = useMemo(() => Math.min((user?.passedWeeks?.length ?? 0) + 1, 4), [user?.passedWeeks]);
 
     const client = useRef();
     const recordId = useRef();
@@ -166,7 +169,7 @@ export function ProgressProvider(props) {
 
                 return;
             } else {
-                setCurrentScreen(SCREENS[`LOBBY${lastWeek}`]);
+                setCurrentScreen(SCREENS[`LOBBY${info.data.currentWeek}`]);
             }
         } catch (e) {
             setTgError({isError: true, message: e.message});
@@ -178,7 +181,7 @@ export function ProgressProvider(props) {
     useEffect(() => {
         // client.current = new FTClient(
         //     API_LINK,
-        //     ''
+        //     API_NAME
         // );
 
         initProject().catch((e) => console.log(e));
@@ -268,8 +271,6 @@ export function ProgressProvider(props) {
             setNewAchieve(achieve);
         }
 
-        const pointsName = user.isTargeted ? 'pointsTarget' : 'pointsUntarget';
-
         await updateUser(
             {
                 [`week${week}Points`]: (user[`week${week}Points`] ?? 0) + totalGamePoints,
@@ -277,9 +278,10 @@ export function ProgressProvider(props) {
                     isCompleted: true,
                     completedAt: formatDate(endTimeMsc),
                 }},
-                [pointsName]: (user[pointsName] ?? 0) + achieveCost,
+                achievePoints: (user.achievePoints ?? 0) + achieveCost,
                 achieves: hasAchieve ? [...user.achieves, achieve] : user.achieves,
                 passedWeeks: level === 3 ? [...(user.passedWeeks ?? []), week] : user.passedWeeks,
+                currentWeek: level === 3 ? Math.min(user.currentWeek + 1, 4) : user.currentWeek,
             }
         );
 
@@ -319,14 +321,14 @@ export function ProgressProvider(props) {
     };
 
     const registrateUser = async (args) => {
-        const pointsName = args.isTargeted ? 'pointsTarget' : 'pointsUntarget';
-
+        const regDate = formatDate(getMoscowTime());
         const data = {
             ...user,
             achieves: [],
-            [pointsName]: (user[pointsName] ?? 0) + 10,
+            regPoints: 10,
             passedWeeks: [],
             id: uid(8),
+            regDate,
             ...args,
         }
 
@@ -365,7 +367,6 @@ export function ProgressProvider(props) {
         setNewAchieve,
         newAchieve,
         updateTotalPoints,
-        lastWeek,
         tgInfo,
     }
 

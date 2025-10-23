@@ -1,15 +1,13 @@
-import { useProgress } from "../../../contexts/ProgressContext";
 import { useSizeRatio } from "../../../hooks/useSizeRatio"
 import { InfoScreen } from "../../shared/InfoScreen";
 import { RedStroke1Line } from "../../shared/RedStrokes";
 import { MarkeredText } from "../../shared/Texts";
 
 export const EndLevel12 = () => {
-    const { next } = useProgress();
     const ratio = useSizeRatio();
 
     return (
-        <InfoScreen buttonText={"Вперёд"} onClick={() => next()}>
+        <InfoScreen buttonText={"Вперёд"}>
             <RedStroke1Line>Второй этап пройден!</RedStroke1Line>
             <p>
                 Мы знаем, как волнительно и потеряно можно почувствовать себя{' '}

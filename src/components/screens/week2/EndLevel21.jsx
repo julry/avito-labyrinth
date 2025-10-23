@@ -1,15 +1,13 @@
-import { useProgress } from "../../../contexts/ProgressContext";
 import { useSizeRatio } from "../../../hooks/useSizeRatio"
 import { InfoScreen } from "../../shared/InfoScreen";
 import { RedStroke1Line } from "../../shared/RedStrokes";
 import {MarkeredText} from '../../shared/Texts';
 
 export const EndLevel21 = () => {
-    const { next } = useProgress();
     const ratio = useSizeRatio();
 
     return (
-        <InfoScreen buttonText={"Далее"} onClick={() => next()}>
+        <InfoScreen buttonText={"Далее"} week={2}>
             <RedStroke1Line>Новый этап пройден!</RedStroke1Line>
             <p>Проявляться бывает страшно, поэтому в Авито мы{"\u00A0"}
                 <MarkeredText 

@@ -5,7 +5,6 @@ import { FlexWrapper } from "../../shared/ContentWrapper";
 import bgImage from '../../../assets/images/awardsBg.svg';
 import { BackHeader } from "../../shared/BackHeader";
 import { useSizeRatio } from "../../../hooks/useSizeRatio";
-import { AnimatePresence, motion } from "framer-motion";
 import {UntargetedPart} from './parts/UntargetedPart';
 import { TargetedPart } from "./parts/TargetedPart";
 import {SCREENS} from '../../../constants/screens';
@@ -28,7 +27,7 @@ const Content = styled.div`
 
 export const AwardsScreen = ({onClose}) => {
     const ratio = useSizeRatio();
-    const { user, lastWeek, next } = useProgress();
+    const { user, next } = useProgress();
 
     const handleClose = () => {
         if (typeof onClose === 'function') {
@@ -36,7 +35,7 @@ export const AwardsScreen = ({onClose}) => {
             return;
         }
 
-        next(SCREENS[`LOBBY${lastWeek}`]);
+        next(SCREENS[`LOBBY${user.currentWeek}`]);
     }
 
     return (

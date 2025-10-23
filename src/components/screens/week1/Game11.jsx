@@ -14,7 +14,6 @@ const FinalSvg = styled.svg`
 export const Game11 = () => {
     const ratio = useSizeRatio();
 
-    //TODO: обучение
     return (
         <LabyrinthGame 
             week={1} 

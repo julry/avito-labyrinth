@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useProgress } from "../../../contexts/ProgressContext";
 import { useSizeRatio } from "../../../hooks/useSizeRatio"
 import { InfoScreen } from "../../shared/InfoScreen";
 import { RedStroke1Line } from "../../shared/RedStrokes";
@@ -11,11 +10,10 @@ const Image = styled.div`
 `;
 
 export const Advice12 = () => {
-    const { next } = useProgress();
     const ratio = useSizeRatio();
 
     return (
-        <InfoScreen buttonText={"Продолжить путь"} onClick={() => next()}>
+        <InfoScreen buttonText={"Продолжить путь"} week={1}>
             <RedStroke1Line>Совет от Авито</RedStroke1Line>
             <p>
                 Как еще обрести <MarkeredText 

@@ -1,15 +1,13 @@
-import { useProgress } from "../../../contexts/ProgressContext";
 import { useSizeRatio } from "../../../hooks/useSizeRatio"
 import { InfoScreen } from "../../shared/InfoScreen";
 import { RedStroke1Line } from "../../shared/RedStrokes";
 import { MarkeredText } from "../../shared/Texts";
 
 export const EndLevel11 = () => {
-    const { next } = useProgress();
     const ratio = useSizeRatio();
 
     return (
-        <InfoScreen buttonText={"Вперёд"} onClick={() => next()}>
+        <InfoScreen buttonText={"Вперёд"}>
             <RedStroke1Line>Ты прошел первый этап!</RedStroke1Line>
             <p>
                 Иногда высказать свое мнение так же страшно, как пройти темный лабиринт с монстрами

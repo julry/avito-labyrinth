@@ -122,6 +122,8 @@ export const TargetedPart = () => {
     const { user } = useProgress();
     const ratio = useSizeRatio();
 
+    //TODO: отображение баллов после того как дима сделает
+
     return (
         <AnimatePresence key="targeted">
             {

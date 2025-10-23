@@ -11,7 +11,6 @@ const SvgStyled = styled.div`
     height: ${({$ratio})=> $ratio * 504}px;
 `;
 
-
 const Content = styled.div`
     position: relative;
     z-index: 2;
@@ -82,6 +81,7 @@ const InfoRow = styled.div`
 export const UntargetedPart = () => {
     const { user } = useProgress();
     const ratio = useSizeRatio();
+    //TODO: отображение баллов после того как дима сделает
 
     return (
         <>

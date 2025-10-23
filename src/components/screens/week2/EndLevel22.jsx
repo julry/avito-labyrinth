@@ -1,19 +1,13 @@
-import { useProgress } from "../../../contexts/ProgressContext";
 import { useSizeRatio } from "../../../hooks/useSizeRatio"
 import { InfoScreen } from "../../shared/InfoScreen";
 import { RedStroke1Line } from "../../shared/RedStrokes";
 import {MarkeredText} from '../../shared/Texts';
 
 export const EndLevel22 = () => {
-    const { next } = useProgress();
     const ratio = useSizeRatio();
 
-    const handleClick = () => {
-        next();
-    }
-
     return (
-        <InfoScreen buttonText={"Далее"} onClick={handleClick}>
+        <InfoScreen buttonText={"Далее"} week={2}>
             <RedStroke1Line>Ты уверенно движешься вперед!</RedStroke1Line>
             <p>
                 В Авито мы оставили в прошлом фразы «ты что, самый умный?» и «не выделяйся» и создали{' '}

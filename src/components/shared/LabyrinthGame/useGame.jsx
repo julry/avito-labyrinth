@@ -1,17 +1,19 @@
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
-export const useGame = ({onEndGame, initialPosition, maze, finalPosition}) => {
+export const useGame = ({onEndGame, initialPosition, maze, stars, finalPosition}) => {
     const [playerPosition, setPlayerPosition] = useState(initialPosition);
     const [isFinished, setIsFinished] = useState(false);
+    const [shownStars, setShownStars] = useState(stars);
+    const isFinishShown = useMemo(() => !shownStars.length, [shownStars]);
 
     const isCurrentMoving = useRef(false);
 
     const isJunction = (x, y) => {
         let paths = 0;
     
-        if (y - 1 > 0 && !maze[y - 1]?.[x].includes('b')) paths++; // Вверх
+        if (y - 1 >= 0 && !maze[y - 1]?.[x].includes('b')) paths++; // Вверх
         if (y < maze.length - 1 && !maze[y][x].includes('b')) paths++; // Вниз
-        if (x - 1 > 0 && !maze[y][x - 1].includes('r')) paths++; // Влево
+        if (x - 1 >= 0 && !maze[y][x - 1].includes('r')) paths++; // Влево
         if (x < maze[0].length - 1 && !maze[y][x].includes('r')) paths++; // Вправо
         
         // Развилка - когда есть более 2 путей (включая тот, откуда пришли)
@@ -81,7 +83,7 @@ export const useGame = ({onEndGame, initialPosition, maze, finalPosition}) => {
             let currentDirection = direction;
 
             while(true) {
-                if (newX === finalPosition.x && newY === finalPosition.y) {
+                if (isFinishShown && newX === finalPosition.x && newY === finalPosition.y) {
                         setTimeout(() => onEndGame?.(), 150);
                         isCurrentMoving.current = false;
                      break;
@@ -133,7 +135,6 @@ export const useGame = ({onEndGame, initialPosition, maze, finalPosition}) => {
                 if (isMoving) {
                     tries++;
                     await asyncChangePosition(newX, newY);
-                    // if (maze[newX][newY].includes('exit')) break;
                 } else if (tries > 0) {
                     const alternativeDirection = findAlternativeDirection(newX, newY, currentDirection);
                     if (alternativeDirection) {
@@ -152,7 +153,12 @@ export const useGame = ({onEndGame, initialPosition, maze, finalPosition}) => {
                     break;
                 }
 
-                if (isJunction(newX, newY)) {
+                const isStar = maze[newY][newX].includes('s');
+                if (isJunction(newX, newY) || isStar) {
+                    if (isStar) {
+                        console.log('hello');
+                        setShownStars((prev) => prev.filter(({x, y}) => x !== newX || y !== newY));
+                    }
                     isCurrentMoving.current = false;
                     break;
                 }
@@ -162,7 +168,7 @@ export const useGame = ({onEndGame, initialPosition, maze, finalPosition}) => {
     const changePosition = (newX, newY) => {
         setPlayerPosition({ x: newX, y: newY });
 
-        if (newX === finalPosition.x && newY === finalPosition.y) {
+        if (isFinishShown && newX === finalPosition.x && newY === finalPosition.y) {
             setIsFinished(true);
             setTimeout(() => onEndGame?.(), 150);
         }
@@ -173,5 +179,5 @@ export const useGame = ({onEndGame, initialPosition, maze, finalPosition}) => {
         setIsFinished(false);
     };
 
-    return { movePlayer, playerPosition, restartGame }
+    return { movePlayer, playerPosition, restartGame, isFinishShown, shownStars }
 }

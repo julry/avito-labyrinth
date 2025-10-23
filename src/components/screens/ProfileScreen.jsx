@@ -142,7 +142,7 @@ const CopyInfo = styled.div`
 `;
 
 export const ProfileScreen = ({onClose}) => {
-    const {user, lastWeek, next} = useProgress();
+    const {user, next} = useProgress();
     const ratio = useSizeRatio();
     const [isSuccessCopy, setIsSuccessCopy] = useState(false);
 
@@ -162,7 +162,7 @@ export const ProfileScreen = ({onClose}) => {
             return;
         }
 
-        next(SCREENS[`LOBBY${lastWeek}`]);
+        next(SCREENS[`LOBBY${user.currentWeek}`]);
     }
 
     return (
@@ -195,8 +195,8 @@ export const ProfileScreen = ({onClose}) => {
                     </svg>
                 </SvgWrapper>
                 <NameWrapper $ratio={ratio}>
-                    <p>{(user.name ?? '').split(' ')[0]}</p>
-                    <p>{(user.name ?? '').split(' ')[1]}</p>
+                    <p>{(user.name ?? '')}</p>
+                    <p>{(user.surname ?? '')}</p>
                     <SvgWrapper>
                         <svg width="100%" height="100%" viewBox="0 0 331 69" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M28.0688 3.2012C8.94029 4.59317 4.91723 17.3143 5.29676 23.5008C3.88286 31.0407 -3.24272 59.4601 9.28189 64.68C21.8065 69.8999 152.313 64.68 187.718 64.68H314.427C335.491 64.68 327.521 48.4403 327.521 25.2408C327.521 2.04121 314.427 6.10114 309.873 3.2012C305.318 0.301251 189.181 3.2012 177.795 6.10114C166.409 9.00109 51.9794 1.46123 28.0688 3.2012Z" stroke="#04E061" strokeWidth="3"/>

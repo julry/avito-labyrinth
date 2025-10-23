@@ -166,7 +166,8 @@ export const Registration = () => {
         const isTargeted = fac.id !== undefined && fac.name !== 'Другое';
         
         const regRes = await registrateUser({ 
-            name: `${name.trim()} ${surname.trim()}`, 
+            name: name.trim(), 
+            surname: surname.trim(),
             email: email.trim(), 
             university: univ?.name?.trim(), 
             universityId: univ.id, 
