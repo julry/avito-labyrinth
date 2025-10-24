@@ -15,7 +15,7 @@ import week1GameBg from '../../../assets/images/week1GameBg.svg';
 import week2GameBg from '../../../assets/images/week2GameBg.svg';
 import week3GameBg from '../../../assets/images/week3GameBg.svg';
 import { Block } from "../Block";
-import { RedStroke1Line, RedStroke2Line } from "../RedStrokes";
+import { RedStroke1Line, RedStroke2Line, RedStroke3Line } from "../RedStrokes";
 import { Button } from "../Button";
 
 //TODO: добавить 4
@@ -71,7 +71,7 @@ const Cell = styled.div`
     z-index: 3;
     width: ${({ $cellWidth }) => $cellWidth}px;
     height: ${({ $cellHeight }) => $cellHeight}px;
-    font-size: 7px;
+    font-size: 12px;
 `;
 
 const Player = styled(motion.div)`
@@ -144,17 +144,20 @@ export function LabyrinthGame({
     finalSvg,
     level,
     achieve,
-    stars = []
+    isFirstStars,
+    stars = [],
+    isEndWeek
 }) {
     const ratio = useSizeRatio();
     const { next, endGame, newAchieve, setNewAchieve } = useProgress();
     const [isSkipping, setIsSkipping] = useState(false);
     const [isEducative, setIsEducative] = useState(isFirst)
     const [isFirstModal, setIsFirstModal] = useState(isFirst);
+    const [isFirstStarModal, setIsFirstStarModal] = useState(isFirstStars)
 
     const handleEndGame = () => {
         next();
-        endGame({ week, level, achieve });
+        endGame({ week, level, achieve, isEndWeek });
     }
 
     const { movePlayer, playerPosition, isFinishShown, shownStars } = useGame({ 
@@ -305,6 +308,14 @@ export function LabyrinthGame({
                     <TextModal>Лабиринт может оказаться непростым. Это твое путешествие, и главное — двигаться в своем темпе. Удачи!</TextModal>
                 </Block>
                 <ButtonModal onClick={() => setIsFirstModal(false)}>Начать путешествие</ButtonModal>
+            </Modal>
+            <Modal isOpen={isFirstStarModal}>
+                <Block>
+                    <RedStroke3Line>
+                        Собирай артефакты-звездочки, чтобы найти выход из лабиринта
+                    </RedStroke3Line>
+                </Block>
+                <ButtonModal onClick={() => setIsFirstStarModal(false)}>Продолжить</ButtonModal>
             </Modal>
             <NewAchieveModal isOpen={newAchieve !== undefined} achieveId={newAchieve} onClose={() => { setNewAchieve() }} />
         </>

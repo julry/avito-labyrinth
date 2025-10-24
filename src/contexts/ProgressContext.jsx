@@ -16,6 +16,15 @@ const INITIAL_ACTIVITY_DATA = {
     1: INITIAL_DAY_ACTIVITY,
     2: INITIAL_DAY_ACTIVITY,
     3: INITIAL_DAY_ACTIVITY,
+    4: INITIAL_DAY_ACTIVITY,
+    5: INITIAL_DAY_ACTIVITY,
+    6: INITIAL_DAY_ACTIVITY,
+    7: INITIAL_DAY_ACTIVITY,
+    8: INITIAL_DAY_ACTIVITY,
+    9: INITIAL_DAY_ACTIVITY,
+    10: INITIAL_DAY_ACTIVITY,
+    11: INITIAL_DAY_ACTIVITY,
+    12: INITIAL_DAY_ACTIVITY,
 };
 
 const INITIAL_ENTER_DATA = {
@@ -49,10 +58,7 @@ const INITIAL_USER = {
     week2EnterPoints: INITIAL_ENTER_DATA,
     week3EnterPoints: INITIAL_ENTER_DATA,
     week4EnterPoints: INITIAL_ENTER_DATA,
-    game1Week: INITIAL_ACTIVITY_DATA,
-    game2Week: INITIAL_ACTIVITY_DATA,
-    game3Week: INITIAL_ACTIVITY_DATA,
-    game4Week: INITIAL_ACTIVITY_DATA,
+    gameProgress: INITIAL_ACTIVITY_DATA,
     currentWeek: 1,
 };
 
@@ -66,7 +72,7 @@ const getMoscowTime = (date) => {
 }
 
 const getCurrentWeek = () => {
-    return 2;
+    return 3;
     const today = getMoscowTime();
 
     if (today < getMoscowTime(new Date(2025, 10, 10))) return 0;
@@ -257,12 +263,12 @@ export function ProgressProvider(props) {
         hour12: false
     }).format(date).replace(',', '');
 
-    const endGame = async ({ week, level, achieve}) => {
+    const endGame = async ({ week, level, achieve, isEndWeek}) => {
         const hasAchieve = achieve !== undefined;
 
         const achieveCost = hasAchieve ? 5 : 0;
         const totalGamePoints = user?.isTargeted ? 10 : 0;
-        if (user[`game${week}Week`]?.[level]?.isCompleted) return;
+        if (user.gameProgress?.[level]?.isCompleted) return;
 
 
         const endTimeMsc = getMoscowTime();
@@ -274,14 +280,14 @@ export function ProgressProvider(props) {
         await updateUser(
             {
                 [`week${week}Points`]: (user[`week${week}Points`] ?? 0) + totalGamePoints,
-                [`game${week}Week`]: { ...user[`game${week}Week`], [level]: {
+                gameProgress: { ...(user.gameProgress ?? INITIAL_ACTIVITY_DATA), [level]: {
                     isCompleted: true,
                     completedAt: formatDate(endTimeMsc),
                 }},
                 achievePoints: (user.achievePoints ?? 0) + achieveCost,
                 achieves: hasAchieve ? [...user.achieves, achieve] : user.achieves,
-                passedWeeks: level === 3 ? [...(user.passedWeeks ?? []), week] : user.passedWeeks,
-                currentWeek: level === 3 ? Math.min(user.currentWeek + 1, 4) : user.currentWeek,
+                passedWeeks: isEndWeek ? [...(user.passedWeeks ?? []), week] : user.passedWeeks,
+                currentWeek: isEndWeek ? Math.min(user.currentWeek + 1, 4) : user.currentWeek,
             }
         );
 

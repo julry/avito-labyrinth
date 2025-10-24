@@ -15,11 +15,13 @@ export const Game23 = () => {
     return (
         <LabyrinthGame
             week={2}
-            level={3}
+            level={6}
             boardSize={{ width: 332 * ratio, height: 332 * ratio }}
             cellHeight={(330) / 15 * ratio}
             cellWidth={(332) / 15 * ratio}
             starsToCollect={3}
+            isFirstStars
+            isEndWeek
             maze={
                 [
                     ['b-r', 'b-r', 'b-r', 'b-r', 'b-r', 'b', '', 'r', '', 'b-r', 'b-r', 'b-r', 'b-r', 'b-r', 'b-r'],
