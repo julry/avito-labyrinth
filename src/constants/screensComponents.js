@@ -22,6 +22,7 @@ import {
     Game41, Game42, Game43, InfoWeek4, Lobby4, EndWeek4
  } from "../components/screens/week4";
 import { SCREENS } from "./screens";
+import {FinishScreen} from '../components/screens/FinishScreen';
 
 export const screens = {
     [SCREENS.INTROREG]: IntroRegistration,
@@ -80,4 +81,5 @@ export const screens = {
     [SCREENS.INFOWEEK4]: InfoWeek4,
     [SCREENS.LOBBY4]: Lobby4,
     [SCREENS.ENDWEEK4]: EndWeek4,
+    [SCREENS.FINISH]: FinishScreen,
 };

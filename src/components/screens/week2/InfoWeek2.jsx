@@ -9,7 +9,7 @@ export const InfoWeek2 = () => {
     const ratio = useSizeRatio();
 
     const handleNext = () => {
-        registrateAchieve(3);
+        registrateAchieve(3, true);
     }
 
     return (

@@ -23,10 +23,10 @@ const TitleWrapper = styled.div`
 
 export const Lobby1 = ({isDisabled}) => {
     const { user, next } = useProgress();
-    const gameData = user.gameProgress ?? {};
+    const gameData = useMemo(() => user.gameProgress ?? {}, [user.gameProgress]);
     const currentLevel = useMemo(() => (
             Object.keys(gameData).map((levelKey) => gameData[levelKey].isCompleted ? 100 : +levelKey).sort((a,b) => a - b)[0]
-        ), []);
+        ), [gameData]);
 
     const handleClickItem = (index) => {
         if (isDisabled || index !== currentLevel) return;

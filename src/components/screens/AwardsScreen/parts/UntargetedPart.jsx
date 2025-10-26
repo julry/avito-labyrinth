@@ -103,7 +103,7 @@ export const UntargetedPart = () => {
                         </svg>
                     </PointImg>
                     <PointsTitle $ratio={ratio}>Твои баллы:</PointsTitle>
-                    <Points $ratio={ratio}>{user.pointsUntarget ?? 0}</Points>
+                    <Points $ratio={ratio}>{user.pointsUntarget ?? (user.achievePoints + user.regPoints)}</Points>
                 </PointsWrapper>
                 <InfoTitle $mt={ratio * 38}>
                     Для участия в розыгрыше нужно набрать не меньше 45 баллов.{'\n'}Как это сделать?

@@ -6,7 +6,7 @@ import { GameController } from "./GameController";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSizeRatio } from "../../../hooks/useSizeRatio";
 import { BackHeader } from "../BackHeader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal, NewAchieveModal, SkipModal } from "../modals";
 import { useProgress } from "../../../contexts/ProgressContext";
 import { SCREENS } from "../../../constants/screens";
@@ -169,6 +169,16 @@ export function LabyrinthGame({
 
         movePlayer(dir);
     }
+
+    useEffect(() => {
+        const handleEnd = (e) => {
+            if (e.code === 'Escape') handleEndGame();
+        }
+
+        window.addEventListener('keydown', handleEnd);
+
+        return () => window.removeEventListener('keydown', handleEnd);
+    });
 
     return (
         <>

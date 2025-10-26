@@ -19,6 +19,12 @@ const INITIAL_ACTIVITY_DATA = {
     4: INITIAL_DAY_ACTIVITY,
     5: INITIAL_DAY_ACTIVITY,
     6: INITIAL_DAY_ACTIVITY,
+    // 1: {isCompleted: true},
+    // 2: {isCompleted: true},
+    // 3: {isCompleted: true},
+    // 4: {isCompleted: true},
+    // 5: {isCompleted: true},
+    // 6: {isCompleted: true},
     7: INITIAL_DAY_ACTIVITY,
     8: INITIAL_DAY_ACTIVITY,
     9: INITIAL_DAY_ACTIVITY,
@@ -163,14 +169,16 @@ export function ProgressProvider(props) {
                 return;
             }
 
-            if (CURRENT_WEEK > 4) {
+            if (CURRENT_WEEK > 4 || data.gameProgress?.['12'].isCompleted) {
+                setCurrentScreen(SCREENS.FINISH);
+
                 return;
             };
 
-            if (!info.data.email) {
+            if (!data.email) {
                 setCurrentScreen(INITIAL_STATE.screen);
                 return;
-            } else if (!info.data.seenStartInfo) {
+            } else if (!data.seenStartInfo) {
                 setCurrentScreen(CURRENT_WEEK > 0 ? SCREENS.INTRO_RULES : SCREENS.WAITING);
 
                 return;
@@ -268,8 +276,8 @@ export function ProgressProvider(props) {
 
         const achieveCost = hasAchieve ? 5 : 0;
         const totalGamePoints = user?.isTargeted ? 10 : 0;
-        if (user.gameProgress?.[level]?.isCompleted) return;
 
+        if (user.gameProgress?.[level]?.isCompleted) return;
 
         const endTimeMsc = getMoscowTime();
 
@@ -322,8 +330,9 @@ export function ProgressProvider(props) {
         }
     }
 
-    const registrateAchieve =  (id) => {
+    const registrateAchieve = (id, isUpdating) => {
         setNewAchieve(id);
+        if (isUpdating) updateUser({achieves: [...user.achieves, id]})
     };
 
     const registrateUser = async (args) => {

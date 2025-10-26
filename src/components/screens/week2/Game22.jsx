@@ -13,7 +13,7 @@ const FinalSvg = styled.svg`
 
 export const Game22 = () => {
     const ratio = useSizeRatio();
-    //TODO: странно посчитал развилку, проверить ('r' 2 слева 3 снизу)
+
     return (
         <LabyrinthGame
             week={2}
@@ -21,6 +21,7 @@ export const Game22 = () => {
             boardSize={{ width: 332 * ratio, height: 471 * ratio }}
             cellHeight={(471) / 20 * ratio}
             cellWidth={(329) / 14 * ratio}
+            achieve={4}
             maze={
                 [
                     ['', 'b', 'r', 'b', 'r', 'b-r', 'b-r', 'b-r', 'b-r', '', 'r', '', '', 'b-r'],

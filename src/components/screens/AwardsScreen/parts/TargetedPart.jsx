@@ -167,7 +167,7 @@ export const TargetedPart = () => {
                     </PointImg>
                     <InfoTitle $mt={0}>Твои баллы:</InfoTitle>
                     <Points $ratio={ratio}>
-                        {(part === 0 ? user[`week${CURRENT_WEEK > 4 ? 4 : CURRENT_WEEK}Points`] : user.pointsTarget) ?? 0}
+                        {(part === 0 ? user[`week${CURRENT_WEEK > 4 ? 4 : CURRENT_WEEK}Points`] : (user.pointsTarget ?? (user.achievePoints + user.regPoints))) ?? 0}
                     </Points>
                 </PointsWrapper>
                 {
