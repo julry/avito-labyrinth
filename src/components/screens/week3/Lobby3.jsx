@@ -5,6 +5,8 @@ import { useMemo } from 'react';
 import styled from "styled-components";
 import { BlueText } from "../../shared/Texts";
 import { UnavailableTitle } from "../../shared/UnavailableTitle";
+import {useImagePreloader} from '../../../hooks/useImagePreloader';
+import {week3Images} from '../../../constants/preloads';
 
 const TitleWrapper = styled.div`
     position: absolute;
@@ -46,6 +48,8 @@ export const Lobby3 = () => {
 
         next(SCREENS[`LEVEL3${index}`])
     };
+
+    useImagePreloader(isUnable ? [] : week3Images);
 
     if (isUnable) {
         return (

@@ -79,7 +79,7 @@ const InfoRow = styled.div`
 `;
 
 export const UntargetedPart = () => {
-    const { user } = useProgress();
+    const { totalPoints } = useProgress();
     const ratio = useSizeRatio();
     //TODO: отображение баллов после того как дима сделает
 
@@ -103,7 +103,7 @@ export const UntargetedPart = () => {
                         </svg>
                     </PointImg>
                     <PointsTitle $ratio={ratio}>Твои баллы:</PointsTitle>
-                    <Points $ratio={ratio}>{user.pointsUntarget ?? (user.achievePoints + user.regPoints)}</Points>
+                    <Points $ratio={ratio}>{totalPoints ?? 0}</Points>
                 </PointsWrapper>
                 <InfoTitle $mt={ratio * 38}>
                     Для участия в розыгрыше нужно набрать не меньше 45 баллов.{'\n'}Как это сделать?

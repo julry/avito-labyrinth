@@ -8,11 +8,13 @@ import { useProgress } from "../../contexts/ProgressContext";
 import week1Bg from '../../assets/images/week1Bg.svg';
 import week2Bg from '../../assets/images/week2Bg.svg';
 import week3Bg from '../../assets/images/week3Bg.svg';
+import week4Bg from '../../assets/images/week4Bg.svg';
 
 const WEEK_TO_BG = {
  1: week1Bg,
  2: week2Bg,
- 3: week3Bg
+ 3: week3Bg,
+ 4: week4Bg
 }
 
 const Wrapper = styled(FlexWrapper)`

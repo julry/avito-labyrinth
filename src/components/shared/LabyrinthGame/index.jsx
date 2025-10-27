@@ -14,16 +14,16 @@ import { SCREENS } from "../../../constants/screens";
 import week1GameBg from '../../../assets/images/week1GameBg.svg';
 import week2GameBg from '../../../assets/images/week2GameBg.svg';
 import week3GameBg from '../../../assets/images/week3GameBg.svg';
+import week4GameBg from '../../../assets/images/week4GameBg.svg';
 import { Block } from "../Block";
 import { RedStroke1Line, RedStroke2Line, RedStroke3Line } from "../RedStrokes";
 import { Button } from "../Button";
-
-//TODO: добавить 4
 
 const WEEK_TO_BG = {
     1: week1GameBg,
     2: week2GameBg,
     3: week3GameBg,
+    4: week4GameBg,
 };
 
 const Wrapper = styled(FlexWrapper)`

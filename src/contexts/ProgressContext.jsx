@@ -78,7 +78,7 @@ const getMoscowTime = (date) => {
 }
 
 const getCurrentWeek = () => {
-    return 3;
+    return 5;
     const today = getMoscowTime();
 
     if (today < getMoscowTime(new Date(2025, 10, 10))) return 0;
@@ -183,7 +183,7 @@ export function ProgressProvider(props) {
 
                 return;
             } else {
-                setCurrentScreen(SCREENS[`LOBBY${info.data.currentWeek}`]);
+                setCurrentScreen(SCREENS[`LOBBY${data.currentWeek}`]);
             }
         } catch (e) {
             setTgError({isError: true, message: e.message});

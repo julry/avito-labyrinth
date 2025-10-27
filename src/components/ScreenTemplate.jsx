@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { SizeRatioContextProvider } from '../contexts/SizeRatioContext';
 import WebApp from '@twa-dev/sdk';
 import { CookieInfo } from './shared/CookieInfo';
+import { useImagePreloader } from '../hooks/useImagePreloader';
+import { commonImages } from '../constants/preloads';
 
 export const TARGET_WIDTH = 375;
 export const TARGET_HEIGHT = 677;
@@ -97,8 +99,9 @@ export function ScreenTemplate(props) {
         } else {
             localStorage.setItem('cookieAgree', 'true');
         }
-       
     }
+
+    useImagePreloader(commonImages);
 
     return (
         <SizeRatioContextProvider target={wrapperInnerRef} targetWidth={TARGET_WIDTH} targetHeight={TARGET_HEIGHT}>

@@ -23,7 +23,6 @@ const BlueStyled = styled(BlueText)`
     font-size: ${({ $ratio }) => $ratio * 22}px;
 `;
 
-
 const TextWrapper = styled.div`
     position: absolute;
     display: flex;

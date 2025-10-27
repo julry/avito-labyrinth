@@ -5,6 +5,8 @@ import { SCREENS } from '../../../constants/screens';
 import { useMemo } from 'react';
 import { BlueText } from "../../shared/Texts";
 import { UnavailableTitle } from "../../shared/UnavailableTitle";
+import {useImagePreloader} from '../../../hooks/useImagePreloader';
+import {week2Images} from '../../../constants/preloads';
 
 const TitleWrapper = styled.div`
     position: absolute;
@@ -45,6 +47,9 @@ export const Lobby2 = () => {
 
         next(SCREENS[`LEVEL2${index}`])
     };
+
+
+    useImagePreloader(isUnable ? [] : week2Images);
 
     if (isUnable) {
         return (

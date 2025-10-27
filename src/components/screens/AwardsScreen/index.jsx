@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { useProgress } from "../../../contexts/ProgressContext";
-import { Button } from "../../shared/Button";
+import {useProgress, CURRENT_WEEK} from '../../../contexts/ProgressContext';
 import { FlexWrapper } from "../../shared/ContentWrapper";
 import bgImage from '../../../assets/images/awardsBg.svg';
 import { BackHeader } from "../../shared/BackHeader";
@@ -32,6 +31,12 @@ export const AwardsScreen = ({onClose}) => {
     const handleClose = () => {
         if (typeof onClose === 'function') {
             onClose();
+            return;
+        }
+
+        if (CURRENT_WEEK > 4 || user.gameProgress[12].isCompleted) {
+            next(SCREENS.FINISH);
+
             return;
         }
 

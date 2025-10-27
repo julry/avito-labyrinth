@@ -20,12 +20,6 @@ const Background = styled(FlexWrapper)`
     z-index: 1; 
 `;
 
-const LogoStyled = styled.svg`
-    z-index: 5;
-    position: absolute;
-    inset: 0;
-`;
-
 const Header = styled.div`
     position: relative;
     display: flex;
@@ -91,7 +85,6 @@ export const Lobby = ({ titleComponent, children }) => {
             <GameScreen $ratio={ratio}>
                 {children}
             </GameScreen>
-            <LogoStyled $ratio={ratio} />
         </Wrapper>
     )
 }

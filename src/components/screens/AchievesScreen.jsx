@@ -1,5 +1,5 @@
 import { achievements } from "../../constants/achievements";
-import { useProgress } from "../../contexts/ProgressContext"
+import { CURRENT_WEEK, useProgress } from "../../contexts/ProgressContext"
 import { FlexWrapper } from "../shared/ContentWrapper";
 import styled from 'styled-components';
 import bgImage from '../../assets/images/achievesBg.svg';
@@ -128,6 +128,12 @@ export const AchievesScreen = ({ onClose, initialShown, isFirst }) => {
     const handleClose = () => {
         if (typeof onClose === 'function') {
             onClose();
+            return;
+        }
+
+        if (CURRENT_WEEK > 4 || user.gameProgress[12].isCompleted) {
+            next(SCREENS.FINISH);
+
             return;
         }
 
