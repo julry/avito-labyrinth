@@ -29,7 +29,7 @@ const TitleWrapper = styled.div`
 export const Lobby4 = () => {
     const { user, next } = useProgress();
     const gameData = user.gameProgress ?? {};
-    const isUnable = CURRENT_WEEK < 1;
+    const isUnable = CURRENT_WEEK < 4;
     const currentLevel = useMemo(() => (
         Object.keys(gameData).map((levelKey) => gameData[levelKey].isCompleted ? 100 : +levelKey).sort((a, b) => a - b)[0]
     ), []);
