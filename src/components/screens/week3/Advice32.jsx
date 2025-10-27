@@ -9,6 +9,7 @@ const PersonWrapper = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
+    gap: var(--spacing_x3);
 `;
 
 const Image = styled.div`

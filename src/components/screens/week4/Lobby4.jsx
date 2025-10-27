@@ -116,7 +116,7 @@ export const Lobby4 = () => {
             week={4}
             titleComponent={
                 <TitleWrapper>
-                    <h3>Глава IV</h3>
+                    <h3>Глава IV:</h3>
                     <BlueText>work-life balance</BlueText>
                 </TitleWrapper>
             }

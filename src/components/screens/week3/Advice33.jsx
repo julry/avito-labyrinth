@@ -43,7 +43,8 @@ const TextWrapper = styled.div`
     z-index: 4;
     align-items: flex-start;
     top: ${({ $ratio }) => $ratio * 133}px;
-    gap: ${({ $ratio }) => $ratio * 9}px;
+    gap: ${({ $ratio }) => $ratio * 28}px;
+    padding-left: ${({ $ratio }) => $ratio * 6}px;
     width: 100%;
     left: 0;
 `;
@@ -64,7 +65,7 @@ const TextBlock = styled.div`
 `;
 
 const PurpleTextStyled = styled(PurpleText)`
-    padding-bottom: var(--spacing_x1);
+    padding: calc(var(--spacing_x1) / 2) calc(var(--spacing_x1) * 1.25) var(--spacing_x1);
     font-weight: 700;
 `;
 
@@ -127,7 +128,7 @@ export const Advice33 = () => {
                     }
                     svgProps={{ width: 107 * ratio, height: 16 * ratio, left: -2 * ratio, top: 3 * ratio }}
                 />{' '}
-                по качеству контента, а еще она — в кадровом резерве на позиции руководителя
+                по качеству контента и теперь претендует на руководящую должность
             </p>
             <PersonWrapper $ratio={ratio}>
                 <SvgWrapper $ratio={ratio}>
@@ -148,7 +149,7 @@ export const Advice33 = () => {
                 <TextWrapper $ratio={ratio}>
                     <TextBlock>
                         <PurpleTextStyled>Елена Чинакова</PurpleTextStyled>
-                        <p>ведущий дизайнер</p>
+                        <p>ведущий дизайнер</p>
                     </TextBlock>
                     <TextBlock>
                         <PurpleTextStyled>Анастасия Кулакова</PurpleTextStyled>

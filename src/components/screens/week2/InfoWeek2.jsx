@@ -8,12 +8,8 @@ export const InfoWeek2 = () => {
     const { registrateAchieve } = useProgress();
     const ratio = useSizeRatio();
 
-    const handleNext = () => {
-        registrateAchieve(3, true);
-    }
-
     return (
-        <InfoScreen buttonText={"Готов"} week={2} onClick={handleNext}>
+        <InfoScreen buttonText={"Готов"} week={2}>
             <RedStroke1Line>Мы продолжаем путешествие! </RedStroke1Line>
             <p>
                На этой неделе поговорим о силе{' '}

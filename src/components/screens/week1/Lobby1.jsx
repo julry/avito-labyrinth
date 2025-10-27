@@ -49,7 +49,7 @@ export const Lobby1 = ({ isDisabled }) => {
             week={1}
             titleComponent={
                 <TitleWrapper>
-                    <h3>Глава I</h3>
+                    <h3>Глава I:</h3>
                     <BlueText>твой голос значим</BlueText>
                 </TitleWrapper>
             }

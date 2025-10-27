@@ -16,7 +16,7 @@ export const Game11 = () => {
     return (
         <LabyrinthGame 
             week={1} 
-            // isFirst 
+            isFirst 
             level={1}
             boardSize={{width: 300 * ratio, height: 520 * ratio}}
             cellHeight={520 / 21 * ratio}

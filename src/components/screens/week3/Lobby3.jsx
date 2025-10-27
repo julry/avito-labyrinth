@@ -133,7 +133,7 @@ export const Lobby3 = () => {
             week={3}
             titleComponent={
                 <TitleWrapper>
-                    <h3>Глава III</h3>
+                    <h3>Глава III:</h3>
                     <h3>тут ценят</h3>
                     <BlueText>твои амбиции</BlueText>
                 </TitleWrapper>
