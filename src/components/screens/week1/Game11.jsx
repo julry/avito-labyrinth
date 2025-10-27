@@ -49,7 +49,7 @@ export const Game11 = () => {
             initialPosition={{x: 4, y: 3}}
             finalPosition={{x: 11, y: 11}}
             boardSvg={
-                <svg width="300" height="520" viewBox="0 0 300 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="100%" height="100%" viewBox="0 0 300 520" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11.4 518.5H26.25H298.5V469.262V346.167V173.833V124.595V1.5H273.75H224.25H199.5H75.75H1.5V26.119V198.452V247.69V370.786V444.643V518.5H11.4Z" fill="#CEEFFF"/>
                 <mask id="mask0_718_1251" style={{maskType: "alpha"}} maskUnits="userSpaceOnUse" x="1" y="1" width="298" height="518">
                 <path d="M11.4 518.5H26.25H298.5V469.262V346.167V173.833V124.595V1.5H273.75H224.25H199.5H75.75H1.5V26.119V198.452V247.69V370.786V444.643V518.5H11.4Z" fill="#CEEFFF"/>

@@ -58,7 +58,7 @@ export const Advice13 = () => {
                         </svg>
                     } 
                     svgProps={{width: 68 * ratio, height: 16 * ratio, left: -2 * ratio, top: 3 * ratio}} 
-                />{' '}ты отстаиваешь
+                />{' '}ты отстаиваешь
             </p>
             <Image $ratio={ratio}>
                 <svg width="100%" height="100%" viewBox="0 0 300 123" fill="none" xmlns="http://www.w3.org/2000/svg">

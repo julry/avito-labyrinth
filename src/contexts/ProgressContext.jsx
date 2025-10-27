@@ -124,7 +124,7 @@ export function ProgressProvider(props) {
     const setUserBdData = (record = {}) => {
         recordId.current = record?.id;
         const { data = {}, scriptData = {}} = record ?? {};
-        const points = data.isTargeted ? data.pointsTarget : data.pointsUntarget;
+        const points = data.achievePoints + data.regPoints;
 
         setUserInfo(data);
         setTotalPoints(scriptData?.pointsTotal ?? points);
@@ -305,8 +305,10 @@ export function ProgressProvider(props) {
     const updateTotalPoints = async () => {
         const data = await loadRecord();
 
-        if (data?.scriptData.totalPoints) {
-            setTotalPoints(data?.scriptData.totalPoints);
+        if (data?.scriptData?.totalPoints) {
+            setTotalPoints(data?.scriptData?.totalPoints);
+        } else {
+            setTotalPoints(user.achievePoints + user.regPoints);
         }
     };
 
@@ -332,7 +334,7 @@ export function ProgressProvider(props) {
 
     const registrateAchieve = (id, isUpdating) => {
         setNewAchieve(id);
-        if (isUpdating) updateUser({achieves: [...user.achieves, id]})
+        if (isUpdating) updateUser({achieves: [...user.achieves, id], achievePoints: (user.achievePoints ?? 0) + 5})
     };
 
     const registrateUser = async (args) => {

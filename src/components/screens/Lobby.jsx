@@ -6,6 +6,7 @@ import { useProgress } from "../../contexts/ProgressContext";
 import { NewAchieveModal } from "../shared/modals";
 import { SCREENS } from "../../constants/screens";
 import { useSizeRatio } from "../../hooks/useSizeRatio";
+import { Logo } from "../shared/Logo";
 
 const Wrapper = styled(FlexWrapper)`
     padding-top: var(--spacing_x8);
@@ -19,11 +20,10 @@ const Background = styled(FlexWrapper)`
     z-index: 1; 
 `;
 
-const Content = styled(FlexWrapper)`
+const LogoStyled = styled.svg`
     z-index: 5;
-    height: auto;
-    padding: 0 var(--spacing_x6);
-    min-height: unset;
+    position: absolute;
+    inset: 0;
 `;
 
 const Header = styled.div`
@@ -91,6 +91,7 @@ export const Lobby = ({ titleComponent, children }) => {
             <GameScreen $ratio={ratio}>
                 {children}
             </GameScreen>
+            <LogoStyled $ratio={ratio} />
         </Wrapper>
     )
 }

@@ -48,6 +48,7 @@ export const Game22 = () => {
             }
             initialPosition={{ x: 13, y: 3 }}
             finalPosition={{ x: 2, y: 14 }}
+            boardMargin="var(--spacing_x6)"
             boardSvg={
                 <svg width="100%" height="100%" viewBox="0 0 332 471" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M120.324 469.5H0.5V1.5H119.324V164.097H212.947V1.5H329.5V469.5H214.947V304.834H120.324V469.5Z" fill="#CEEFFF" />

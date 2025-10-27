@@ -3,6 +3,12 @@ import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSizeRatio } from "../../hooks/useSizeRatio";
 
+const SelectWrapper = styled.div`
+    position: relative;
+    z-index:${({$zIndex}) => $zIndex ?? 20};
+    width: 100%;
+`;
+
 const Wrapper = styled.div`
     position: relative;
     padding: var(--spacing_x2) var(--spacing_x4);
@@ -14,6 +20,8 @@ const Wrapper = styled.div`
     text-align: left;
     cursor: pointer;
     width: 100%;
+    z-index: 2;
+    background: #ffffff;
 `; 
 
 const Postfix = styled.div`
@@ -33,22 +41,29 @@ const Postfix = styled.div`
 const List = styled(motion.ul)`
     position: absolute;
     background: white;
-    border-radius: var(--border-radius-sm);
-    padding-top: var(--spacing_x1);
-    width: 100%;
-    top: calc(100% - var(--spacing_x1));
-    left: 0;
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing_x7) calc(1.5 * var(--spacing_x1)) 0;
+    width: calc(100% - var(--spacing_x1));
+    top: calc(100% - var(--spacing_x7));
+    left: calc(var(--spacing_x1) / 2);
     transform-origin: top;
     z-index: ${({$zIndex}) => $zIndex ?? 20};
+    border: 3px solid var(--color-blue);
+    z-index: 1;
 `;
 
 const Option = styled(motion.li)`
-    padding: var(--spacing_x2) var(--spacing_x4);
+    padding: var(--spacing_x2) 0;
     font-size:var(--font_sm);
     text-align: left;
     cursor: pointer;
     list-style-type: none;
-    border-top:  2px solid rgba(38, 61, 141, 0.3);
+    font-weight: 500;
+    border-bottom:  2px solid var(--color-blue);
+
+    &:last-child {
+        border-bottom: 0;
+    }
 `;
 
 export const Select = (props) => {
@@ -59,10 +74,11 @@ export const Select = (props) => {
 
     const handleChoose = (id, name) => {
         props.onChoose?.(id, name);
+        setIsOpen(false);
     };
 
     return (
-        <>
+        <SelectWrapper $zIndex={zIndex}>
             <Wrapper ref={wrapperRef} className={props.className} onClick={() => setIsOpen(prev => !prev)} $ratio={ratio}>
                 <span>{value ? value : placeholder}</span>
                 <Postfix $isOpen={isOpen} $ratio={ratio}>
@@ -70,7 +86,8 @@ export const Select = (props) => {
                         <path d="M2 6L10 16L18 6" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                 </Postfix>
-                <AnimatePresence>
+            </Wrapper>
+            <AnimatePresence>
                 {
                     isOpen && (
                         <List
@@ -79,7 +96,6 @@ export const Select = (props) => {
                             animate={{ opacity: 1, scaleY: 1 }}
                             exit={{ opacity: 0, scaleY: 0.5 }}
                             transition={{ duration: 0.3 }}
-                            $zIndex={zIndex}
                         >
                             {options.map(({id, name}) => (
                                 <Option 
@@ -94,8 +110,6 @@ export const Select = (props) => {
                     )
                 }
             </AnimatePresence>
-            </Wrapper>
-            
-        </>
+        </SelectWrapper>
     )
 }

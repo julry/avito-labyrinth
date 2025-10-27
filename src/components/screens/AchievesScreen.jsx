@@ -180,8 +180,7 @@ export const AchievesScreen = ({ onClose, initialShown, isFirst }) => {
             <NewAchieveModal isOpen={shownFirstAchieve} onClose={() => setShownFirstAchieve()} achieveId={0}>
                     <BlockFirst>
                         <RedStroke1Line $ratio={ratio}>Это твое первое достижение</RedStroke1Line>
-                        <AchieveDescStyled $ratio={ratio}> {shownFirstAchieve?.desc}
-                        </AchieveDescStyled>
+                        <p>{shownFirstAchieve?.desc}</p>
                     </BlockFirst>
             </NewAchieveModal>
         </Wrapper>

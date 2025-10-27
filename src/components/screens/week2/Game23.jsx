@@ -41,6 +41,7 @@ export const Game23 = () => {
                     ['b-r', 'b-r', 'b-r', 'b-r', 'b-r', 'b', 'b-r', 'b', 'b-r', 'b-r', 'b-r', 'b-r', 'b-r', 'b-r', 'b-r'],
                 ]
             }
+            boardMargin={75*ratio + 'px'}
             stars={
                 [{x: 8, y: 1},{x: 5, y: 11},{x: 10, y: 11} ]
             }

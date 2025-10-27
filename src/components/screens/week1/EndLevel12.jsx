@@ -32,7 +32,7 @@ export const EndLevel12 = () => {
                     }
                     svgProps={{width: 73 * ratio, height: 16 *ratio, left: -2*ratio, top: 3*ratio}}   
                  />{' '}
-                который поможет адаптироваться и смело общаться с коллегами
+                который поможет адаптироваться и смело общаться с коллегами
             </p>
         </InfoScreen>
     )

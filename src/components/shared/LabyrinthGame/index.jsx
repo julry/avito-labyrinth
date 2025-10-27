@@ -39,7 +39,11 @@ const WrapperInner = styled.div`
     align-items: center;
     width: ${({ $boardSize }) => $boardSize.width}px;
     height: ${({ $boardSize }) => $boardSize.height}px;
-    margin-top: calc( var(--spacing_x7) + var(--spacing_x4) + 4 * var(--spacing_x3));
+    margin-top: calc(var(--spacing_x7) + ${({$mt = 'var(--spacing_x4)'}) => $mt} + 4 * var(--spacing_x3));
+
+    @media screen and (min-height: 800px) and (max-width: 500px) {
+        margin-top: calc(var(--spacing_x7) + 2 * ${({$mt = 'var(--spacing_x4)'}) => $mt} + 4 * var(--spacing_x3));
+    }
 `;
 
 const Field = styled(FlexWrapper)`
@@ -146,7 +150,8 @@ export function LabyrinthGame({
     achieve,
     isFirstStars,
     stars = [],
-    isEndWeek
+    isEndWeek,
+    boardMargin
 }) {
     const ratio = useSizeRatio();
     const { next, endGame, newAchieve, setNewAchieve } = useProgress();
@@ -192,7 +197,7 @@ export function LabyrinthGame({
                     onMoveRight={() => handleMove('right')}
                 >
                     {(ref) => (
-                        <WrapperInner ref={ref} $ratio={ratio} $boardSize={boardSize}>
+                        <WrapperInner ref={ref} $ratio={ratio} $boardSize={boardSize} $mt={boardMargin}>
                             <Field $ratio={ratio}>
                                 <BoardBg $ratio={ratio}>
                                     {boardSvg}
