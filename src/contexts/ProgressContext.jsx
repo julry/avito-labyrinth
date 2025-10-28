@@ -170,9 +170,13 @@ export function ProgressProvider(props) {
             }
 
             if (CURRENT_WEEK > 4 || data.gameProgress?.['12'].isCompleted) {
-                setCurrentScreen(SCREENS.FINISH);
+                if (data.email) {
+                    setCurrentScreen(SCREENS.FINISH);
 
-                return;
+                    return;
+                }
+                
+                setCurrentScreen(SCREENS.PLUG);
             };
 
             if (!data.email) {

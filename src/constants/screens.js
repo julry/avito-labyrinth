@@ -56,6 +56,7 @@ export const SCREENS = {
     LOBBY4: 'LOBBY4',
     DESKTOP: 'DESKTOP',
     FINISH: 'FINISH',
+    PLUG: 'PLUG',
 }
 
 export const NEXT_SCREENS = {

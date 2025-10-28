@@ -16,7 +16,7 @@ export const Advice41 = () => {
         <InfoScreen buttonText={"Продолжить путь"} week={4}>
             <RedStroke1Line>Совет от Авито</RedStroke1Line>
             <p>
-                Первый шаг к эмоциональной стабильности —
+                Первый шаг к эмоциональной стабильности —{' '}
                 <MarkeredText
                     text="комфортный режим сна"
                     svgElement={
