@@ -8,6 +8,7 @@ import izotov from '../../../assets/images/izotov.png'
 const PersonWrapper = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
     gap: var(--spacing_x3);
 `;

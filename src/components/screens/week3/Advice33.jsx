@@ -9,10 +9,11 @@ import chinakova from '../../../assets/images/chinakova.png';
 const PersonWrapper = styled.div`
     display: flex;
     align-items: center;
-    width: 100%;
+    /* width: 100%; */
     gap: ${({ $ratio }) => $ratio * 5}px;
     position: relative;
     padding-bottom:  ${({ $ratio }) => $ratio * 39}px;
+    margin: auto;
     margin-top:  ${({ $ratio }) => $ratio * -6}px;
 `;
 
