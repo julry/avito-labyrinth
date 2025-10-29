@@ -13,21 +13,24 @@ const INITIAL_DAY_ACTIVITY = {
 }
 
 const INITIAL_ACTIVITY_DATA = {
-    1: INITIAL_DAY_ACTIVITY,
-    2: INITIAL_DAY_ACTIVITY,
-    3: INITIAL_DAY_ACTIVITY,
-    4: INITIAL_DAY_ACTIVITY,
-    5: INITIAL_DAY_ACTIVITY,
-    6: INITIAL_DAY_ACTIVITY,
-    // 1: {isCompleted: true},
-    // 2: {isCompleted: true},
-    // 3: {isCompleted: true},
-    // 4: {isCompleted: true},
-    // 5: {isCompleted: true},
-    // 6: {isCompleted: true},
-    7: INITIAL_DAY_ACTIVITY,
-    8: INITIAL_DAY_ACTIVITY,
-    9: INITIAL_DAY_ACTIVITY,
+    // 1: INITIAL_DAY_ACTIVITY,
+    // 2: INITIAL_DAY_ACTIVITY,
+    // 3: INITIAL_DAY_ACTIVITY,
+    // 4: INITIAL_DAY_ACTIVITY,
+    // 5: INITIAL_DAY_ACTIVITY,
+    // 6: INITIAL_DAY_ACTIVITY,
+    // 7: INITIAL_DAY_ACTIVITY,
+    // 8: INITIAL_DAY_ACTIVITY,
+    // 9: INITIAL_DAY_ACTIVITY,
+    1: {isCompleted: true},
+    2: {isCompleted: true},
+    3: {isCompleted: true},
+    4: {isCompleted: true},
+    5: {isCompleted: true},
+    6: {isCompleted: true},
+    7: {isCompleted: true},
+    8: {isCompleted: true},
+    9: {isCompleted: true},
     10: INITIAL_DAY_ACTIVITY,
     11: INITIAL_DAY_ACTIVITY,
     12: INITIAL_DAY_ACTIVITY,
@@ -50,7 +53,7 @@ const INITIAL_USER = {
     email: '',
     university: '',
     faculty: '',
-    isTargeted: true,
+    isTargeted: false,
     seenStartInfo: false,
     week1Points: 0,
     week2Points: 0,
@@ -78,7 +81,7 @@ const getMoscowTime = (date) => {
 }
 
 const getCurrentWeek = () => {
-    return 3;
+    return 4;
     const today = getMoscowTime();
 
     if (today < getMoscowTime(new Date(2025, 10, 10))) return 0;

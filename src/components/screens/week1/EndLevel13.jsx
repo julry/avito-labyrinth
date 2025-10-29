@@ -7,7 +7,7 @@ export const EndLevel13 = () => {
     const ratio = useSizeRatio();
 
     return (
-        <InfoScreen buttonText={"Вперёд"}>
+        <InfoScreen buttonText={"Вперед"}>
             <RedStroke1Line>Ты вышел на новый уровень!</RedStroke1Line>
             <p>
                 «Я всего лишь стажер, лучше промолчу…» Нет! 

@@ -7,7 +7,7 @@ export const EndLevel12 = () => {
     const ratio = useSizeRatio();
 
     return (
-        <InfoScreen buttonText={"Вперёд"}>
+        <InfoScreen buttonText={"Вперед"}>
             <RedStroke1Line>Второй этап пройден!</RedStroke1Line>
             <p>
                 Мы знаем, как волнительно и потеряно можно почувствовать себя{' '}

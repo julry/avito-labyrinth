@@ -36,7 +36,6 @@ export const Lobby4 = () => {
         Object.keys(gameData).map((levelKey) => gameData[levelKey].isCompleted ? 100 : +levelKey).sort((a, b) => a - b)[0]
     ), []);
 
-
     const handleClickItem = (index, level) => {
         if (isUnable || level !== currentLevel) return;
 

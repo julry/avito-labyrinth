@@ -13,7 +13,7 @@ export const InfoWeek1 = () => {
     const ratio = useSizeRatio();
 
     return (
-        <ScreenWrapper buttonText={"Вперёд"}>
+        <ScreenWrapper buttonText={"Вперед"}>
             <RedStroke3Line>
                 Мы поговорим про инструменты для выражения себя и ценности Авито
             </RedStroke3Line>

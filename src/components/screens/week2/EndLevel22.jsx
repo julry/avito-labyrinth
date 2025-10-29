@@ -8,7 +8,7 @@ export const EndLevel22 = () => {
 
     return (
         <InfoScreen buttonText={"Далее"} week={2}>
-            <RedStroke1Line>Ты уверенно движешься вперёд!</RedStroke1Line>
+            <RedStroke1Line>Ты уверенно движешься вперед!</RedStroke1Line>
             <p>
                 В Авито мы оставили в прошлом фразы «ты что, самый умный?» и «не выделяйся» и создали{' '}
                 <MarkeredText 

@@ -1,8 +1,14 @@
 import styled from "styled-components";
 import { useSizeRatio } from "../../hooks/useSizeRatio";
 
+const SIZE_TO_HEIGHT = {
+    sm: 40,
+    md: 42,
+    xl: 54,
+}
 const Wrapper = styled.input`
     padding: var(--spacing_x2) var(--spacing_x4);
+    height: ${({$height}) => $height}px;
     font-size: var(--font_sm);
     font-weight: 500;
     outline: none;
@@ -18,7 +24,7 @@ const Wrapper = styled.input`
     }
 `;
 
-export const Input = ({isCorrect, ...props}) => {
+export const Input = ({isCorrect, size = "sm", ...props}) => {
     const ratio = useSizeRatio();
 
     const getBorderColor = () => {
@@ -27,5 +33,5 @@ export const Input = ({isCorrect, ...props}) => {
 
         return 'blue'
     }
-    return <Wrapper {...props} $ratio={ratio} $borderColor={getBorderColor()}/>
+    return <Wrapper {...props} $height={ratio * SIZE_TO_HEIGHT[size]} $ratio={ratio} $borderColor={getBorderColor()}/>
 }

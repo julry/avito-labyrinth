@@ -105,7 +105,7 @@ export const FinishScreen = () => {
                         }
                         svgProps={{ width: 107 * ratio, top: 5 * ratio, height: 20 * ratio, left: -3 * ratio }}
                     />{' '}
-                    в боте! А пока ждёшь, можешь подать заявку на{' '}
+                    в боте! А пока ждешь, можешь подать заявку на{' '}
                     <MarkeredText
                         text="стажировку"
                         svgElement={

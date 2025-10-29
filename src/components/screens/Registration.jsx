@@ -10,6 +10,7 @@ import { SCREENS } from "../../constants/screens";
 import { BrightScreen } from "../shared/BrightScreen";
 import { useSizeRatio } from "../../hooks/useSizeRatio";
 import { PurpleText } from "../shared/Texts";
+import { InputAutocomplete } from "../shared/InputAutocomplete";
 
 const PurpleTextBold = styled(PurpleText)`
     position: relative;
@@ -25,6 +26,7 @@ const Content = styled(FlexWrapper)`
     flex-grow: 1;
     min-width: ${({$ratio}) => $ratio * 300}px;
     max-width: ${({$ratio}) => $ratio * 300}px;
+    gap: var(--spacing_x2);
 `;
 
 const SelectStyled = styled(Select)`
@@ -34,10 +36,6 @@ const SelectStyled = styled(Select)`
 const InputWrapper = styled.div`
     position: relative;
     width: 100%;
-
-    & + & {
-        margin-top: var(--spacing_x2);
-    }
 `;
 
 const Picture = styled.div`
@@ -91,10 +89,10 @@ const RadioButtonLabel = styled.label`
     width: 100%;
     text-align: left;
     max-width: 300px;
-    margin-top: var(--spacing_x6);
+    margin-top: var(--spacing_x4);
 
     & + &  {
-        margin-top: var(--spacing_x3);
+        margin-top: var(--spacing_x1);
     }
 
     & ${InputRadioButton}:checked + ${RadioIconStyled} {
@@ -136,6 +134,9 @@ export const Registration = () => {
     const { next, checkEmailRegistrated, registrateUser } = useProgress();
     const [univ, setUniv] = useState({});
     const [fac, setFac] = useState({});
+    const [otherUniv, setOtherUniv] = useState('');
+    const [otherFac, setOtherFac] = useState('');
+    const [textFac, setTextFac] = useState('');
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [email, setEmail] = useState('');
@@ -163,17 +164,18 @@ export const Registration = () => {
             return;
         }
 
-        const isTargeted = fac.id !== undefined && fac.name !== 'Другое';
+        const university = univ?.id === 'other' ? otherUniv?.trim() : univ?.name;
+        const faculty = univ?.id === 'other' || fac?.id === 'other' ? otherFac?.trim() : fac?.name;
         
         const regRes = await registrateUser({ 
             name: name.trim(), 
             surname: surname.trim(),
             email: email.trim(), 
-            university: univ?.name?.trim(), 
-            universityId: univ.id, 
+            university, 
+            universityId: univ?.id, 
             isAddsAgreed: isMailsAgreed,
-            faculty: fac.name !== 'Другое' ? fac.name : '', 
-            facultyId: fac.name !== 'Другое' ? fac.id : undefined,
+            faculty, 
+            facultyId: fac?.id,
             isTargeted: fac?.isTargeted,
         });
 
@@ -215,8 +217,20 @@ export const Registration = () => {
         setEmail(e.target.value);
     };
 
-    // const btnDisabled = !isSurnameCorrect || !isEmailFieldCorrect || !isNameCorrect || !isAgreed || !univ?.id || (univ.id !== 'other' && !fac);
-    const btnDisabled = !isSurnameCorrect || !isEmailFieldCorrect || !isNameCorrect || !isAgreed;
+    const handleFacPick = (fac) => {
+        if (!fac.id || fac.id === 'other') {
+            setFac({id: 'other'});
+            setOtherFac(fac);
+
+            return;
+        }
+
+        setFac(fac);
+    }
+
+    const isUnivPicked = univ?.id === 'other' ? otherUniv.length : !!(univ.name);
+    const isFacPicked = fac?.id === 'other' ? otherFac.length : !!(fac.name);
+    const btnDisabled = !isSurnameCorrect || !isEmailFieldCorrect || !isNameCorrect || !isAgreed || !isUnivPicked || !isFacPicked;
 
     const getIcon = (isCorrect) => {
         if (typeof isCorrect !== "boolean") return;
@@ -316,14 +330,38 @@ export const Registration = () => {
                         />
                         {getIcon(isEmailFieldCorrect)}
                     </InputWrapper>
-                    <SelectStyled
+                    <Select
                         value={univ.name}
                         options={universities}
                         onChoose={handlePickUniversity}
                         placeholder="Вуз"
                         zIndex={21}
                     />
-                    {univ.name && (
+                    {univ.id === 'other' ? (
+                        <>
+                            <Input
+                                type="text"
+                                id="university"
+                                value={otherUniv}
+                                onChange={(e) => setOtherUniv(e.target.value)}
+                                placeholder="Введи название своего вуза"
+                                autoComplete="university"
+                            />
+                            <Input
+                                type="text"
+                                id="faculty"
+                                value={otherFac}
+                                onChange={(e) => setOtherFac(e.target.value)}
+                                placeholder="Введи название своего факультета"
+                                autoComplete="faculty"
+                            />
+                        </>
+                    ) : 
+                        univ.name && (
+                            <InputAutocomplete onPick={handleFacPick} univId={univ.id}/>
+                        )
+                    }
+                    {/* {univ.name && (
                         <SelectStyled
                             value={fac.name}
                             options={faculties.filter(({ university }) => university === univ.id || university === 'all')}
@@ -332,7 +370,7 @@ export const Registration = () => {
                             zIndex={19}
                             initialTop={169}
                         />
-                    )}
+                    )} */}
                    
                     {isAlreadyHas && (
                         <WrongText>Ой! Эта почта уже зарегистрирована. Попробуй ввести снова.</WrongText>
@@ -362,20 +400,20 @@ export const Registration = () => {
                             > */}
                                 передачу{" "}
                             {/* </Link>{" "} */}
-                            моих персональных данных и соглашаюсь с условиями{" "}
+                            моих персональных данных и соглашаюсь с {" "}
                             <Link
                                 href={'https://fut.ru/user-agreement'}
                                 target="_blank"
                                 rel="noreferrer"
                             >
-                                Пользовательского соглашения и Политикой обработки персональных данных.
+                                Политикой обработки персональных данных
                             </Link>
-                            {/* , а также с {"\u00A0"}
+                            , а также с {"\u00A0"}
                             <Link
-                                href={'https://worklifealfa.fut.ru/agreement.pdf'}
+                                href={'https://agreement.pdf.avito-maze.fut.ru/'}
                                 target="_blank"
                                 rel="noreferrer"
-                            >правилами проведения акции</Link>. */}
+                            >правилами проведения акции</Link>.
                         </span>
                     </RadioButtonLabel>
                     <RadioButtonLabel>
