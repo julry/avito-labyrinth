@@ -38,7 +38,7 @@ export const Advice41 = () => {
                     }
                     svgProps={{ width: 70 * ratio, height: 16 * ratio, left: -2 * ratio, top: 3 * ratio }}
                 />{' '}
-                — сна и настроения  — и смотри, как продолжительность сна соотносится с твоим настроением
+                — сна и настроения — и смотри, как продолжительность сна соотносится с твоим настроением
             </p>
             <Image $ratio={ratio}>
                 <svg width="100%" height="100%" viewBox="0 0 300 122" fill="none" xmlns="http://www.w3.org/2000/svg">

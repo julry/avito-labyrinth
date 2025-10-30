@@ -20,8 +20,6 @@ export function SizeRatioContextProvider(props) {
         calculateSizeRatio();
     }, [calculateSizeRatio]);
 
-    // useResizeObserver({ onResize: calculateSizeRatio, ref: target });
-
     return (
         <SizeRatioContext.Provider value={sizeRatio}>
             {typeof children === 'function' ? children(sizeRatio) : children}

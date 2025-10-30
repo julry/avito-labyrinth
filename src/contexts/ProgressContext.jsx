@@ -13,24 +13,24 @@ const INITIAL_DAY_ACTIVITY = {
 }
 
 const INITIAL_ACTIVITY_DATA = {
-    // 1: INITIAL_DAY_ACTIVITY,
-    // 2: INITIAL_DAY_ACTIVITY,
-    // 3: INITIAL_DAY_ACTIVITY,
-    // 4: INITIAL_DAY_ACTIVITY,
-    // 5: INITIAL_DAY_ACTIVITY,
-    // 6: INITIAL_DAY_ACTIVITY,
-    // 7: INITIAL_DAY_ACTIVITY,
-    // 8: INITIAL_DAY_ACTIVITY,
-    // 9: INITIAL_DAY_ACTIVITY,
-    1: {isCompleted: true},
-    2: {isCompleted: true},
-    3: {isCompleted: true},
-    4: {isCompleted: true},
-    5: {isCompleted: true},
-    6: {isCompleted: true},
-    7: {isCompleted: true},
-    8: {isCompleted: true},
-    9: {isCompleted: true},
+    1: INITIAL_DAY_ACTIVITY,
+    2: INITIAL_DAY_ACTIVITY,
+    3: INITIAL_DAY_ACTIVITY,
+    4: INITIAL_DAY_ACTIVITY,
+    5: INITIAL_DAY_ACTIVITY,
+    6: INITIAL_DAY_ACTIVITY,
+    7: INITIAL_DAY_ACTIVITY,
+    8: INITIAL_DAY_ACTIVITY,
+    9: INITIAL_DAY_ACTIVITY,
+    // 1: {isCompleted: true},
+    // 2: {isCompleted: true},
+    // 3: {isCompleted: true},
+    // 4: {isCompleted: true},
+    // 5: {isCompleted: true},
+    // 6: {isCompleted: true},
+    // 7: {isCompleted: true},
+    // 8: {isCompleted: true},
+    // 9: {isCompleted: true},
     10: INITIAL_DAY_ACTIVITY,
     11: INITIAL_DAY_ACTIVITY,
     12: INITIAL_DAY_ACTIVITY,
@@ -176,7 +176,8 @@ export function ProgressProvider(props) {
                     }
                     if (screenParam.includes('LOBBY')) {
                         week = +screenParam.split('LOBBY')[1] - 1;
-                        if (week > 1) {
+                        console.log(week);
+                        if (week > 0) {
                             level = 4;
                         }
                     }

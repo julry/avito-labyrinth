@@ -7,10 +7,10 @@ export const EndLevel33 = () => {
     const ratio = useSizeRatio();
 
     return (
-        <InfoScreen buttonText={"К истории успеха"} week={3}>
+        <InfoScreen buttonText={"Разблокировать инсайт"} week={3}>
             <RedStroke2Line>Целеустремленность —{'\n'}залог успеха</RedStroke2Line>
             <p>
-                В Авито мы ценим твое желание расти по карьерной лестнице
+                В Авито мы ценим твое желание расти по карьерной лестнице
             </p>
             <p>
                 Если у тебя{' '}
@@ -23,7 +23,7 @@ export const EndLevel33 = () => {
                     }
                     svgProps={{ width: 66 * ratio, height: 16 * ratio, left: -2 * ratio, top: 4 * ratio }}
                 />{' '}
-                — значит{' '}
+                — значит,{' '}
                 <MarkeredText
                     text="есть и силы,"
                     svgElement={
@@ -42,8 +42,7 @@ export const EndLevel33 = () => {
                     }
                     svgProps={{ width: 119 * ratio, height: 16 * ratio, left: -2 * ratio, top: 5 * ratio }}
                 />{' '}
-                Готов узнать, какие возможности предлагает компания?
-
+                Разберемся,{'\n'}как это сделать?
             </p>
         </InfoScreen>
     )

@@ -5,6 +5,8 @@ import WebApp from '@twa-dev/sdk';
 import { CookieInfo } from './shared/CookieInfo';
 import { useImagePreloader } from '../hooks/useImagePreloader';
 import { commonImages } from '../constants/preloads';
+import { useProgress } from '../contexts/ProgressContext';
+import { SCREENS } from '../constants/screens';
 
 export const TARGET_WIDTH = 375;
 export const TARGET_HEIGHT = 677;
@@ -55,11 +57,10 @@ const Content = styled.div`
     width: 100%;
     height: 100%;
     min-height: 100%;
-    transform: translate(0, 0);
+    ${({$shouldUseTransform}) => $shouldUseTransform ? 'transform: translate(0, 0);' : ''};
     white-space: pre-line;
     font-size: var(--font_md);
     background-color: #FFFFFF;
-
 
     @media (min-width: ${MIN_MOCKUP_WIDTH}px) {
         overflow: hidden;
@@ -74,10 +75,12 @@ const Content = styled.div`
 `;
 
 export function ScreenTemplate(props) {
+    const {currentScreen} = useProgress();
     const [isShowCookies, setIsShowCookies] = useState(false);
     const { children } = props;
     const wrapperRef = useRef();
     const wrapperInnerRef = useRef();
+    const shouldUseTransform = currentScreen !== SCREENS.DESKTOP;
 
     useEffect(() => { 
         let cookieAgree
@@ -108,7 +111,7 @@ export function ScreenTemplate(props) {
             {(sizeRatio) => (
                 <Wrapper ref={wrapperRef}>
                     <WrapperInner ref={wrapperInnerRef}>
-                        <Content $sizeRatio={sizeRatio} id="content">
+                        <Content $sizeRatio={sizeRatio} id="content" $shouldUseTransform={shouldUseTransform}>
                             {children}
                             {isShowCookies && 
                                 <CookieInfo onClose={handleCloseCookie} />

@@ -24,6 +24,7 @@ import {
 import { SCREENS } from "./screens";
 import {FinishScreen} from '../components/screens/FinishScreen';
 import { Plug } from "../components/screens/Plug";
+import { DesktopScreen } from "../components/screens/Desktop";
 
 export const screens = {
     [SCREENS.INTROREG]: IntroRegistration,
@@ -84,4 +85,5 @@ export const screens = {
     [SCREENS.ENDWEEK4]: EndWeek4,
     [SCREENS.FINISH]: FinishScreen,
     [SCREENS.PLUG]: Plug,
+    [SCREENS.DESKTOP]: DesktopScreen,
 };

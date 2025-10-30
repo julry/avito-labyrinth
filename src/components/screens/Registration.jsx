@@ -201,6 +201,7 @@ export const Registration = () => {
 
         setUniv({ id, name });
         setFac({});
+        setOtherFac();
     }
 
     const handleBlur = () => {
@@ -358,19 +359,9 @@ export const Registration = () => {
                         </>
                     ) : 
                         univ.name && (
-                            <InputAutocomplete onPick={handleFacPick} univId={univ.id}/>
+                            <InputAutocomplete key={univ.id} onPick={handleFacPick} univId={univ.id}/>
                         )
                     }
-                    {/* {univ.name && (
-                        <SelectStyled
-                            value={fac.name}
-                            options={faculties.filter(({ university }) => university === univ.id || university === 'all')}
-                            onChoose={(id, name) => setFac({name, id})}
-                            placeholder="Факультет"
-                            zIndex={19}
-                            initialTop={169}
-                        />
-                    )} */}
                    
                     {isAlreadyHas && (
                         <WrongText>Ой! Эта почта уже зарегистрирована. Попробуй ввести снова.</WrongText>

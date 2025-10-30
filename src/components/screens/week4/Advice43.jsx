@@ -16,7 +16,7 @@ export const Advice43 = () => {
         <InfoScreen buttonText={"Продолжить путь"} week={4}>
             <RedStroke1Line>Совет от Авито</RedStroke1Line>
             <p>
-                Ученые доказали, что решаться на новое и прививать полезные привычки{' '}
+                Ученые доказали, что решаться на новое и прививать полезные привычки{' '}
                 <MarkeredText
                     text="легче"
                     svgElement={
@@ -25,7 +25,7 @@ export const Advice43 = () => {
                         </svg>
                     }
                     svgProps={{ width: 41 * ratio, height: 16 * ratio, left: -2 * ratio, top: 3 * ratio }}
-                />{' '}
+                />{'\n'}
                 <MarkeredText
                     text="в компании,"
                     svgElement={
@@ -38,7 +38,7 @@ export const Advice43 = () => {
                 чем в одиночку
             </p>
             <p>
-                Так что хватай друллег, составляй список активностей и вперед —{' '}
+                Так что хватай друзей, составляй список активностей и вперед —{' '}
                 <MarkeredText
                     text="делать жизнь ярче"
                     svgElement={

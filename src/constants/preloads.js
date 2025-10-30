@@ -11,10 +11,6 @@ import week2GameBg from '../assets/images/week2GameBg.svg';
 
 import week3Bg from '../assets/images/week3Bg.svg';
 import week3GameBg from '../assets/images/week4GameBg.svg';
-import izotov from '../assets/images/izotov.png';
-import kulakova from '../assets/images/kulakova.png';
-import chinakova from '../assets/images/chinakova.png';
-import morozov from '../assets/images/morozov.png';
 
 import week4Bg from '../assets/images/week4Bg.svg';
 import week4GameBg from '../assets/images/week4GameBg.svg';
@@ -23,7 +19,7 @@ const commonImages = [achievesBg, introBg, profileBg, awardsBg];
 
 const week1Images = [week1Bg, week1GameBg];
 const week2Images = [week2Bg, week2GameBg];
-const week3Images = [week3Bg, week3GameBg, izotov, morozov, kulakova, chinakova];
+const week3Images = [week3Bg, week3GameBg];
 const week4Images = [week4Bg, week4GameBg];
 
 export {commonImages, week1Images, week2Images, week3Images, week4Images};
