@@ -166,8 +166,28 @@ export function ProgressProvider(props) {
                 });
             }
 
-            if (getUrlParam('screen')) {
-                setCurrentScreen(getUrlParam('screen'));
+            const screenParam = getUrlParam('screen');
+            if (screenParam) {
+                if (screenParam.includes('LEVEL') || screenParam.includes('LOBBY')) {
+                    let week = 1;
+                    let level = 0;
+                    if (screenParam.includes('LEVEL')) {
+                        [week, level] = screenParam.split('LEVEL')[1];
+                    }
+                    if (screenParam.includes('LOBBY')) {
+                        week = +screenParam.split('LOBBY')[1] - 1;
+                        if (week > 1) {
+                            level = 4;
+                        }
+                    }
+                    const gameProgress = {...data.gameProgress};
+
+                    for (let i=1; i < ((+week - 1) * 3 + +level); i++) {
+                        gameProgress[i] = {isCompleted: true};
+                    }
+                   setUserInfo({gameProgress})
+                }
+                setCurrentScreen(screenParam);
 
                 return;
             }

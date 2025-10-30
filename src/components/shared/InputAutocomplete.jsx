@@ -64,7 +64,7 @@ export const InputAutocomplete = ({ onPick, univId, ...props }) => {
     const initialFaculties = useMemo(() => faculties.filter(({university}) => university === univId), [univId]);
 
     const options = useMemo(() => 
-        initialFaculties.filter(({name, shortName}) => name?.toLowerCase()?.includes(value?.toLowerCase()) || shortName?.toLowerCase()?.includes(value?.toLowerCase()))
+        initialFaculties.filter(({name, short}) => name?.toLowerCase()?.includes(value?.toLowerCase()) || short?.toLowerCase()?.includes(value?.toLowerCase()))
     , [value, initialFaculties])
 
     const ratio = useSizeRatio();

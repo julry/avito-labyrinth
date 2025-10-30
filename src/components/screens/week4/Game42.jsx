@@ -15,7 +15,7 @@ export const Game42 = () => {
     return (
         <LabyrinthGame
             week={4}
-            level={10}
+            level={11}
             achieve={7}
             boardSize={{ width: 301 * ratio, height: 523 * ratio }}
             cellHeight={(523) / 21 * ratio}
@@ -34,7 +34,7 @@ export const Game42 = () => {
                     ['r', 'b', 'b-r', '', '', 'r', 'r', 'r', 'b', 'b', 'b', '',],
                     ['b', 'b', 'r', 'r', 'r', 'b', 'b-r', 'b-r', '', 'b', 'r', '',],
                     ['', 'b', 'b-r', 'b-r', '', 'r', '', 'b', 'b-r', '', 'r', '',],
-                    ['b', 'r', 'r', 'r', 'r', 'b', 'b-r', '', 'b', 'b-r', '', '',],
+                    ['b', 'r', '', 'r', 'r', 'b', 'b-r', '', 'b', 'b-r', '', '',],
                     ['', 'b-r', 'r', 'r', 'r', '', 'r', 'b', 'r', '', 'b-r', 'b',],
                     ['', 'b', 'b-r', 'r', 'b', 'b-r', 'b', 'b-rs', 'r', 'r', '', '',],
                     ['b-r', '', 'r', 'b', 'b', 'b', 'b', 'b', 'r', 'r', 'r', '',],

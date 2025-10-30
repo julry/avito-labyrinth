@@ -7,7 +7,7 @@ export const InfoWeek4 = () => {
     const ratio = useSizeRatio();
 
     return (
-        <InfoScreen buttonText={"Зарядиться на успех"} week={4}>
+        <InfoScreen buttonText={"На поиски гармонии"} week={4}>
             <RedStroke3Line>В Авито мы верим: хороший работник = отдохнувший{'\n'}работник</RedStroke3Line>
             <p>
                 На этой неделе поговорим про{' '}
