@@ -4,6 +4,7 @@ import { Block } from "../Block";
 import { Modal } from "./Modal";
 import { BlueText } from "../Texts";
 import { achievements } from "../../../constants/achievements";
+import { useEffect, useRef } from "react";
 
 const IconWrapper = styled.div`
     display: flex;
@@ -34,6 +35,20 @@ const Text = styled(BlueText)`
 
 export const NewAchieveModal = ({ onClose, isOpen, achieveId, children }) => {
     const ratio = useSizeRatio();
+    const timerRef = useRef();
+
+    useEffect(() => {
+        timerRef.current = setTimeout(() => {
+            onClose?.();
+        }, 3000);
+
+        return () => {
+            if (timerRef.current) {
+                clearTimeout(timerRef.current)
+                timerRef.current = undefined;
+            }
+        }
+    }, []);
 
     const achieve = achievements.find(({id}) => achieveId === id);
 

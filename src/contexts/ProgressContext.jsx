@@ -176,7 +176,6 @@ export function ProgressProvider(props) {
                     }
                     if (screenParam.includes('LOBBY')) {
                         week = +screenParam.split('LOBBY')[1] - 1;
-                        console.log(week);
                         if (week > 0) {
                             level = 4;
                         }

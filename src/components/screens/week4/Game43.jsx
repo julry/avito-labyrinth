@@ -20,6 +20,7 @@ export const Game43 = () => {
             boardSize={{ width: 301 * ratio, height: 523 * ratio }}
             cellHeight={(523) / 21 * ratio}
             cellWidth={(301) / 12 * ratio}
+            isEndWeek
             stars={
                 [{ x: 0, y: 12 }, { x: 0, y: 20 }]
             }

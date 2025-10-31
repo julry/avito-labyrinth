@@ -199,6 +199,12 @@ export const Registration = () => {
     const handlePickUniversity = (id, name) => {
         if (univ?.id === id) return;
 
+        if (id === 'other') {
+            setFac({id: 'other'});
+        } else {
+            setFac({});
+        }
+
         setUniv({ id, name });
         setFac({});
         setOtherFac();
@@ -229,8 +235,8 @@ export const Registration = () => {
         setFac(fac);
     }
 
-    const isUnivPicked = univ?.id === 'other' ? otherUniv.length : !!(univ.name);
-    const isFacPicked = fac?.id === 'other' ? otherFac.length : !!(fac.name);
+    const isUnivPicked = univ?.id === 'other' ? !!otherUniv.length : !!(univ.name);
+    const isFacPicked = (univ.id === 'other' || fac?.id === 'other') ? !!otherFac?.length : !!(fac.name);
     const btnDisabled = !isSurnameCorrect || !isEmailFieldCorrect || !isNameCorrect || !isAgreed || !isUnivPicked || !isFacPicked;
 
     const getIcon = (isCorrect) => {
