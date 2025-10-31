@@ -48,8 +48,8 @@ const INITIAL_ENTER_DATA = {
 
 const INITIAL_USER = {
     id: '',
-    name: 'Test',
-    surname: 'Teston',
+    name: '',
+    surname: '',
     email: '',
     university: '',
     faculty: '',
@@ -61,8 +61,8 @@ const INITIAL_USER = {
     week4Points: 0,
     achieves: [],
     regPoints: 10,
-    regDate: '12.12.2025',
-    achievePoints: 0,
+    regDate: '',
+    achievesPoints: 0,
     week1EnterPoints: INITIAL_ENTER_DATA,
     week2EnterPoints: INITIAL_ENTER_DATA,
     week3EnterPoints: INITIAL_ENTER_DATA,
@@ -126,11 +126,12 @@ export function ProgressProvider(props) {
 
     const setUserBdData = (record = {}) => {
         recordId.current = record?.id;
-        const { data = {}, scriptData = {}} = record ?? {};
-        const points = data.achievePoints + data.regPoints;
+        const { data = INITIAL_USER, scriptData = {}} = record ?? {};
+        const points = data.achievesPoints + data.regPoints;
+        const pointsName = data.isTargeted ? 'totalPointsTarget' : 'totalPointsNotTarget';
 
         setUserInfo(data);
-        setTotalPoints(scriptData?.pointsTotal ?? points);
+        setTotalPoints(scriptData?.[pointsName] ?? points);
     }
 
     const initProject = async () => {
@@ -192,7 +193,7 @@ export function ProgressProvider(props) {
                 return;
             }
 
-            if (CURRENT_WEEK > 4 || data.gameProgress?.['12'].isCompleted) {
+            if (CURRENT_WEEK > 4 || data.gameProgress?.['12']?.isCompleted) {
                 if (data.email) {
                     setCurrentScreen(SCREENS.FINISH);
 
@@ -220,10 +221,10 @@ export function ProgressProvider(props) {
     }
 
     useEffect(() => {
-        // client.current = new FTClient(
-        //     API_LINK,
-        //     API_NAME
-        // );
+        client.current = new FTClient(
+            API_LINK,
+            API_NAME
+        );
 
         initProject().catch((e) => console.log(e));
 
@@ -242,7 +243,7 @@ export function ProgressProvider(props) {
         return ({data: INITIAL_USER});
         
         // if (window?.location?.hostname === 'localhost' || !!getUrlParam('screen')) {
-        //     return client.current.findRecord('id', DEV_ID);
+            // return client.current.findRecord('id', DEV_ID);
         // } else {
         //     console.log('webAppInitData', webAppInitData);
         // } 
@@ -319,7 +320,7 @@ export function ProgressProvider(props) {
                     isCompleted: true,
                     completedAt: formatDate(endTimeMsc),
                 }},
-                achievePoints: (user.achievePoints ?? 0) + achieveCost,
+                achievesPoints: (user.achievesPoints ?? 0) + achieveCost,
                 achieves: hasAchieve ? [...user.achieves, achieve] : user.achieves,
                 passedWeeks: isEndWeek ? [...(user.passedWeeks ?? []), week] : user.passedWeeks,
                 currentWeek: isEndWeek ? Math.min(user.currentWeek + 1, 4) : user.currentWeek,
@@ -331,11 +332,12 @@ export function ProgressProvider(props) {
 
     const updateTotalPoints = async () => {
         const data = await loadRecord();
+        const pointsName = data.isTargeted ? 'totalPointsTarget' : 'totalPointsNotTarget';
 
-        if (data?.scriptData?.totalPoints) {
-            setTotalPoints(data?.scriptData?.totalPoints);
+        if (data?.scriptData?.[pointsName]) {
+            setTotalPoints(data?.scriptData?.[pointsName]);
         } else {
-            setTotalPoints(user.achievePoints + user.regPoints);
+            setTotalPoints(user.achievesPoints + user.regPoints);
         }
     };
 
@@ -361,7 +363,7 @@ export function ProgressProvider(props) {
 
     const registrateAchieve = (id, isUpdating) => {
         setNewAchieve(id);
-        if (isUpdating) updateUser({achieves: [...user.achieves, id], achievePoints: (user.achievePoints ?? 0) + 5})
+        if (isUpdating) updateUser({achieves: [...user.achieves, id], achievesPoints: (user.achievesPoints ?? 0) + 5})
     };
 
     const registrateUser = async (args) => {

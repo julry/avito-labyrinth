@@ -136,7 +136,6 @@ export const Registration = () => {
     const [fac, setFac] = useState({});
     const [otherUniv, setOtherUniv] = useState('');
     const [otherFac, setOtherFac] = useState('');
-    const [textFac, setTextFac] = useState('');
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [email, setEmail] = useState('');

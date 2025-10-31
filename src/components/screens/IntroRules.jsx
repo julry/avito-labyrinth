@@ -135,7 +135,7 @@ export const IntroRules = () => {
             updateUser({ 
                 seenStartInfo: true, 
                 achieves: [...user.achieves, 0],
-                [pointsName]: (user[pointsName] ?? 0) + 5,
+                achievesPoints: (user.achievesPoints ?? 0) + 5,
             });
             setIsAchieves(true);
         }

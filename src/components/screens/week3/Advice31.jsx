@@ -29,7 +29,7 @@ export const Advice31 = () => {
                 и получай пользу х3: тот самый опыт, кейс в резюме и уверенность в своих силах
             </p>
             <p>
-                А ещё{' '}
+                А еще{' '}
                 <MarkeredText
                     text="изучай вакансии"
                     svgElement={
@@ -38,7 +38,7 @@ export const Advice31 = () => {
                         </svg>
                     }
                     svgProps={{ width: 117 * ratio, height: 16 * ratio, left: -3 * ratio, top: 3 * ratio }}
-                />{' '}— так ты поймёшь, какие скиллы нужно развивать
+                />{' '}— так ты поймешь, какие скиллы нужно развивать
             </p>
             <Image $ratio={ratio}>
                 <svg width="100%" height="100%" viewBox="0 0 300 94" fill="none" xmlns="http://www.w3.org/2000/svg">

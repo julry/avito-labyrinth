@@ -4,7 +4,7 @@ import bgImage from '../../assets/images/profileBg.svg';
 import { useSizeRatio } from '../../hooks/useSizeRatio';
 import { BackHeader } from '../shared/BackHeader';
 import { useProgress, CURRENT_WEEK } from '../../contexts/ProgressContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SCREENS } from '../../constants/screens';
 
 const Wrapper = styled(FlexWrapper)`

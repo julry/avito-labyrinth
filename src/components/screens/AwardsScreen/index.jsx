@@ -7,6 +7,7 @@ import { useSizeRatio } from "../../../hooks/useSizeRatio";
 import {UntargetedPart} from './parts/UntargetedPart';
 import { TargetedPart } from "./parts/TargetedPart";
 import {SCREENS} from '../../../constants/screens';
+import {useEffect} from 'react';
 
 const Wrapper = styled(FlexWrapper)`
     position: fixed;
@@ -26,7 +27,12 @@ const Content = styled.div`
 
 export const AwardsScreen = ({onClose}) => {
     const ratio = useSizeRatio();
-    const { user, next } = useProgress();
+    const { user, next, updateTotalPoints } = useProgress();
+    
+    useEffect(() => {
+        updateTotalPoints().then(() => {})
+    }, []);
+
 
     const handleClose = () => {
         if (typeof onClose === 'function') {

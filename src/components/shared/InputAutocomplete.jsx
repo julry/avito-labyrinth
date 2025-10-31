@@ -127,10 +127,10 @@ export const InputAutocomplete = ({ onPick, univId, ...props }) => {
                             exit={{ opacity: 0, scaleY: 0.5 }}
                             transition={{ duration: 0.3 }}
                         >
-                            {options.length > 0 ? options.map(({ id, name }) => (
+                            {options.length > 0 ? options.map(({ id, name, isTargeted }) => (
                                 <Option
                                     key={id}
-                                    onClick={() => handlePick({ id, name })}
+                                    onClick={() => handlePick({ id, name, isTargeted})}
                                     $ratio={ratio}
                                 >
                                     {name}
