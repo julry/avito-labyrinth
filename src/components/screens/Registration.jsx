@@ -175,7 +175,7 @@ export const Registration = () => {
             isAddsAgreed: isMailsAgreed,
             faculty, 
             facultyId: fac?.id,
-            isTargeted: fac?.isTargeted,
+            isTargeted: !!fac?.isTargeted,
         });
 
         setIsSending(false);

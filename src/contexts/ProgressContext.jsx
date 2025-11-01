@@ -378,8 +378,11 @@ export function ProgressProvider(props) {
             id = getUrlParam('login') ?? DEV_ID;
         }
 
+        const checkDay = getMoscowTime().getDay();
+
+        const hasGivenEnterPoints = args.isTargeted && CURRENT_WEEK > 0;
+
         const data = {
-            ...INITIAL_USER,
             ...user,
             achieves: [],
             regPoints: 10,
@@ -388,6 +391,17 @@ export function ProgressProvider(props) {
             regDate,
             gameProgress: INITIAL_ACTIVITY_DATA,
             currentWeek: 1,
+            week1EnterPoints: INITIAL_ENTER_DATA,
+            week2EnterPoints: INITIAL_ENTER_DATA,
+            week3EnterPoints: INITIAL_ENTER_DATA,
+            week4EnterPoints: INITIAL_ENTER_DATA,
+            ...(hasGivenEnterPoints ? {
+                [`week${CURRENT_WEEK}EnterPoints`]: {
+                ...INITIAL_ENTER_DATA, 
+                [checkDay]: 10,
+            },
+            [`week${CURRENT_WEEK}Points`]: 10,
+            } : {}),
             ...args,
         }
 
