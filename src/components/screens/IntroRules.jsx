@@ -77,7 +77,7 @@ export const IntroRules = () => {
         if (part === 0) return (
             <>
                 <RedStroke1Line>Это таблица розыгрышей</RedStroke1Line>
-                <p>Здесь ты всегда сможешь узнать, свои шансы на победу в розыгрыше</p>
+                <p>Здесь ты всегда сможешь узнать свои шансы на победу в розыгрыше</p>
             </>
         )
         if (part === 1) return (
@@ -123,15 +123,11 @@ export const IntroRules = () => {
     const handleClick = () => {
         if (part === 0) {
             setIsAwards(true);
-            //open awards
         }
         if (part === 1) {
             setIsProfile(true);
-            //open profile
         }
         if (part === 2) {
-            const pointsName = user?.isTargeted ? 'pointsTarget' : 'pointsUntarget';
-            //open achieves
             updateUser({ 
                 seenStartInfo: true, 
                 achieves: [...user.achieves, 0],
