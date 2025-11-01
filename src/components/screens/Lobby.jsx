@@ -45,7 +45,7 @@ const GameScreen = styled.div`
 
 export const Lobby = ({ titleComponent, children }) => {
     const ratio = useSizeRatio();
-    const { next, newAchieve, setNewAchieve} = useProgress();
+    const { next, newAchieve, setNewAchieve } = useProgress();
     return (
         <Wrapper>
             <Header>

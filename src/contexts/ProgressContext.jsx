@@ -9,7 +9,6 @@ import { getUrlParam } from "../utils/getUrlParam";
 const INITIAL_DAY_ACTIVITY = {
     completedAt: null,
     isCompleted: false,
-    points: 0,
 }
 
 const INITIAL_ACTIVITY_DATA = {
@@ -161,13 +160,14 @@ export function ProgressProvider(props) {
                 await updateUser({
                     [`week${CURRENT_WEEK}Points`]: (data[`week${CURRENT_WEEK}Points`] ?? 0) + 10,
                     [`week${CURRENT_WEEK}EnterPoints`]: {
-                        ...data[`week${CURRENT_WEEK}EnterPoints`], 
+                        ...(data[`week${CURRENT_WEEK}EnterPoints`] ?? INITIAL_ENTER_DATA), 
                         [checkDay]: 10,
                     }
                 });
             }
 
             const screenParam = getUrlParam('screen');
+
             if (screenParam) {
                 if (screenParam.includes('LEVEL') || screenParam.includes('LOBBY')) {
                     let week = 1;
@@ -211,7 +211,7 @@ export function ProgressProvider(props) {
 
                 return;
             } else {
-                setCurrentScreen(SCREENS[`LOBBY${data.currentWeek}`]);
+                setCurrentScreen(SCREENS[`LOBBY${Math.max(data.currentWeek, 1)}`]);
             }
         } catch (e) {
             setTgError({isError: true, message: e.message});
@@ -373,16 +373,21 @@ export function ProgressProvider(props) {
     const registrateUser = async (args) => {
         const regDate = formatDate(getMoscowTime());
         let id = uid(8);
+
         if (window?.location?.hostname === 'localhost' || !!getUrlParam('login')) {
             id = getUrlParam('login') ?? DEV_ID;
         }
+
         const data = {
+            ...INITIAL_USER,
             ...user,
             achieves: [],
             regPoints: 10,
             passedWeeks: [],
             id,
             regDate,
+            gameProgress: INITIAL_ACTIVITY_DATA,
+            currentWeek: 1,
             ...args,
         }
 

@@ -31,7 +31,7 @@ const ButtonWrapper = styled.div`
     margin-bottom: var(--spacing_x5);
 
     & button {
-        padding-top: calc(var(--spacing_x1) * 2.6);
+        padding-top: 3.5%;
         font-size: var(--font_md);
     }
 `;  
@@ -201,19 +201,19 @@ export const TargetedPart = () => {
                                 Для участия в розыгрыше нужно пройти все уровни Глав I–IV. Копи баллы и увеличивай шансы на победу
                             </InfoTitle>
                             <InfoRow $ratio={ratio}><PurpleText>+10 б.</PurpleText>за регистрацию в игре </InfoRow>
-                            <InfoRow $ratio={ratio}><PurpleText>+10 б.</PurpleText>за приглашение 1 друга со своего факультета (max 5)</InfoRow>
+                            <InfoRow $ratio={ratio}><PurpleText>+10 б.</PurpleText>за приглашение и регистрацию 1 друга со своего факультета (max 5 друзей)</InfoRow>
                             <InfoRow $ratio={ratio}><PurpleText>+10 б.</PurpleText>за подписку на Телеграм-канал @futru</InfoRow>
-                            <InfoRow $ratio={ratio}><PurpleText>+5 б.</PurpleText>за каждое достижение в игре (max 9)</InfoRow>
-                            <ChancesInfoWrapper $mt={ratio * 10}>
-                                <InfoTitle>Если ты соберешь</InfoTitle>
+                            <InfoRow $ratio={ratio}><PurpleText>+5 б.</PurpleText>за каждое достижение в игре (max 9 достижений)</InfoRow>
+                            <ChancesInfoWrapper >
+                                <InfoTitle $mt={15 * ratio + 'px'}>Если ты соберешь</InfoTitle>
                                 <ChancesRow $ratio={ratio}>
-                                    <PurpleText>{'>10 б.'}</PurpleText> = 1 шанс
+                                    <PurpleText>{'>55 б.'}</PurpleText> = 1 шанс
                                 </ChancesRow>
                                  <ChancesRow $ratio={ratio}>
-                                     <PurpleText>{'>30 б.'}</PurpleText> = 2 шанса
+                                     <PurpleText>{'>70 б.'}</PurpleText> = 2 шанса
                                 </ChancesRow>
                                  <ChancesRow $ratio={ratio}>
-                                     <PurpleText>{'>70 б.'}</PurpleText> = 3 шанса
+                                     <PurpleText>{'>90 б.'}</PurpleText> = 3 шанса
                                 </ChancesRow>
                                  <ChancesRow $ratio={ratio}>
                                      <PurpleText>{'>100 б.'}</PurpleText> = 4 шанса

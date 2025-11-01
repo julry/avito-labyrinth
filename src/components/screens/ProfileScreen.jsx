@@ -162,7 +162,7 @@ export const ProfileScreen = ({ onClose }) => {
             return;
         }
 
-        if (CURRENT_WEEK > 4 || user.gameProgress[12].isCompleted) {
+        if (CURRENT_WEEK > 4 || user.gameProgress[12]?.isCompleted) {
             next(SCREENS.FINISH);
 
             return;

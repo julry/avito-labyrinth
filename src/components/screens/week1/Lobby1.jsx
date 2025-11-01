@@ -28,7 +28,7 @@ export const Lobby1 = ({ isDisabled }) => {
     const gameData = useMemo(() => user.gameProgress ?? {}, [user.gameProgress]);
     const currentLevel = useMemo(() => (
         Object.keys(gameData).map((levelKey) => gameData[levelKey].isCompleted ? 100 : +levelKey).sort((a, b) => a - b)[0]
-    ), [gameData]);
+    ), [gameData]) ?? 1;
 
     const handleClickItem = (index) => {
         if (isDisabled || index !== currentLevel) return;
