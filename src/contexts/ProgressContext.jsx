@@ -240,6 +240,10 @@ export function ProgressProvider(props) {
         let webAppInitData = webApp?.initData;
         let initData = WebApp.initData;
 
+        if (window?.location?.hostname === 'localhost' || !!getUrlParam('login')) {
+            const login = getUrlParam('login') ?? DEV_ID;
+            return client.current.findRecord('id', login);
+        } 
         return ({data: INITIAL_USER});
         
         // if (window?.location?.hostname === 'localhost' || !!getUrlParam('screen')) {
@@ -368,12 +372,16 @@ export function ProgressProvider(props) {
 
     const registrateUser = async (args) => {
         const regDate = formatDate(getMoscowTime());
+        let id = uid(8);
+        if (window?.location?.hostname === 'localhost' || !!getUrlParam('login')) {
+            id = getUrlParam('login') ?? DEV_ID;
+        }
         const data = {
             ...user,
             achieves: [],
             regPoints: 10,
             passedWeeks: [],
-            id: uid(8),
+            id,
             regDate,
             ...args,
         }
