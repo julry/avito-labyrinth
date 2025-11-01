@@ -121,7 +121,7 @@ const EducativeSvg = styled(motion.div)`
     bottom: ${({ $ratio }) => $ratio * 60}px;
     width: ${({ $ratio }) => $ratio * 92}px;
     height: ${({ $ratio }) => $ratio * 148}px;
-    left: ${({ $ratio }) => $ratio * 162}px;
+    left: ${({ $ratio }) => $ratio * 192}px;
     transform: translateX(-50%);
     z-index: 20;
 `;
@@ -145,6 +145,7 @@ const LineSvg = styled.div`
     left: ${({ $ratio }) => $ratio * 132}px;
     width: ${({ $ratio }) => $ratio * 125}px;
     height: ${({ $ratio }) => $ratio * 113}px;
+    transform: scale(-1, 1);
 `;
 
 export function LabyrinthGame({
@@ -312,7 +313,7 @@ export function LabyrinthGame({
                                         <p>Свайпай, и персонаж переместится до развилки лабиринта</p>
                                     </EducativeBlock>
                                     <EducativeSvg $ratio={ratio}
-                                        animate={{ x: 50 * ratio, y: -10 * ratio }}
+                                        animate={{ x: -50 * ratio, y: -10 * ratio }}
                                         transition={{ repeat: Infinity, duration: 0.8 }}
                                         exit={{opacity: 0}}
                                     >

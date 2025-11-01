@@ -4,11 +4,10 @@ import styled from 'styled-components';
 
 const FinalSvg = styled.svg`
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: ${({ $ratio }) => $ratio * -8}px;
-    width: ${({ $ratio }) => $ratio * 20}px;
-    height: ${({ $ratio }) => $ratio * 30}px;
+    left: ${({$ratio}) => $ratio * -12}px;
+    top: ${({$ratio}) => $ratio * 4}px;
+    width: ${({$ratio}) => $ratio * 33}px;
+    height: ${({$ratio}) => $ratio * 35}px;
 `;
 
 export const Game13 = () => {
