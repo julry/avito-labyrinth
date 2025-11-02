@@ -381,22 +381,22 @@ export const Registration = () => {
                         <RadioIconStyled />
                         <span>
                             Я даю согласие на{"\u00A0"}
-                            {/* <Link
+                            <Link
                                 href={"https://fut.ru/personal_data_agreement"}
                                 target="_blank"
                                 rel="noreferrer"
-                            > */}
-                                обработку{' '}
-                            {/* </Link>{" "} */}
+                            >
+                                обработку
+                            </Link>{" "}
                             и{"\u00A0"}
-                            {/* <Link
+                            <Link
                                 href={"https://fut.ru/personal_data_transfer_agreement"}
                                 target="_blank"
                                 rel="noreferrer"
-                            > */}
-                                передачу{" "}
-                            {/* </Link>{" "} */}
-                            моих персональных данных и соглашаюсь с {" "}
+                            >
+                                передачу
+                            </Link>{" "}
+                            моих персональных данных и соглашаюсь с{" "}
                             <Link
                                 href={'https://fut.ru/user-agreement'}
                                 target="_blank"
@@ -406,7 +406,7 @@ export const Registration = () => {
                             </Link>
                             , а также с {"\u00A0"}
                             <Link
-                                href={'https://agreement.pdf.avito-maze.fut.ru/'}
+                                href={'https://avito-maze.fut.ru/agreement.pdf'}
                                 target="_blank"
                                 rel="noreferrer"
                             >правилами проведения акции</Link>.
