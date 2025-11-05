@@ -29,7 +29,7 @@ const List = styled(motion.ul)`
     border: 3px solid var(--color-blue);
     z-index: 1;
     overflow: auto;
-    max-height: calc(100vh - 4 * var(--spacing_x2) - 5 * ${({$ratio}) => $ratio * 42}px - ${({$ratio}) => $ratio * 187}px);
+    max-height: ${({$ratio}) => $ratio * 127}px;
 `;
 
 const Option = styled(motion.li)`

@@ -29,10 +29,6 @@ const Content = styled(FlexWrapper)`
     gap: var(--spacing_x2);
 `;
 
-const SelectStyled = styled(Select)`
-    margin-top: var(--spacing_x2);
-`;
-
 const InputWrapper = styled.div`
     position: relative;
     width: 100%;
