@@ -6,7 +6,7 @@ import { GameController } from "./GameController";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSizeRatio } from "../../../hooks/useSizeRatio";
 import { BackHeader } from "../BackHeader";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Modal, NewAchieveModal, SkipModal } from "../modals";
 import { useProgress } from "../../../contexts/ProgressContext";
 import { SCREENS } from "../../../constants/screens";
@@ -16,7 +16,7 @@ import week2GameBg from '../../../assets/images/week2GameBg.svg';
 import week3GameBg from '../../../assets/images/week3GameBg.svg';
 import week4GameBg from '../../../assets/images/week4GameBg.svg';
 import { Block } from "../Block";
-import { RedStroke1Line, RedStroke2Line, RedStroke3Line } from "../RedStrokes";
+import { RedStroke2Line, RedStroke3Line } from "../RedStrokes";
 import { Button } from "../Button";
 
 const WEEK_TO_BG = {
@@ -188,15 +188,15 @@ export function LabyrinthGame({
         movePlayer(dir);
     }
 
-    useEffect(() => {
-        const handleEnd = (e) => {
-            if (e.code === 'Escape') handleEndGame();
-        }
+    // useEffect(() => {
+    //     const handleEnd = (e) => {
+    //         if (e.code === 'Escape') handleEndGame();
+    //     }
 
-        window.addEventListener('keydown', handleEnd);
+    //     window.addEventListener('keydown', handleEnd);
 
-        return () => window.removeEventListener('keydown', handleEnd);
-    });
+    //     return () => window.removeEventListener('keydown', handleEnd);
+    // });
 
     return (
         <>

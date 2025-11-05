@@ -4,7 +4,7 @@ import bgImage from '../../assets/images/profileBg.svg';
 import { useSizeRatio } from '../../hooks/useSizeRatio';
 import { BackHeader } from '../shared/BackHeader';
 import { useProgress, CURRENT_WEEK } from '../../contexts/ProgressContext';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { SCREENS } from '../../constants/screens';
 
 const Wrapper = styled(FlexWrapper)`
@@ -142,13 +142,13 @@ const CopyInfo = styled.div`
 `;
 
 export const ProfileScreen = ({ onClose }) => {
-    const { user, next } = useProgress();
+    const { user, next, tgInfo } = useProgress();
     const ratio = useSizeRatio();
     const [isSuccessCopy, setIsSuccessCopy] = useState(false);
 
     const handleCopy = () => {
         if (navigator.clipboard) {
-            navigator.clipboard.writeText(`ref_id_`).then(() => {
+            navigator.clipboard.writeText(`ref_id_${tgInfo?.tgUserId ?? ''}`).then(() => {
                 setIsSuccessCopy(true);
 
                 setTimeout(() => setIsSuccessCopy(false), 3000);
@@ -247,7 +247,7 @@ export const ProfileScreen = ({ onClose }) => {
                         </svg>
                     </RefSvg>
                     <RefField>
-                        <p>ref_link_</p>
+                        <p>ref_link_{tgInfo?.tgUserId ?? ''}</p>
                         <RefButton $ratio={ratio} onClick={handleCopy}>
                             <svg width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5.88462 13.4615H3V3.0769H13.3846V4.80767" stroke="black" />

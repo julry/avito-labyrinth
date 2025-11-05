@@ -37,7 +37,6 @@ const Postfix = styled.div`
     transform: translateY(-50%) ${({$isOpen}) => $isOpen ? 'rotate(180deg)' : ''};
 `;
 
-//TODO: ждет макеты
 const List = styled(motion.ul)`
     position: absolute;
     background: white;

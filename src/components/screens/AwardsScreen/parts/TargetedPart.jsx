@@ -117,12 +117,17 @@ const ChancesRow = styled(InfoRow)`
     }
 `;
 
+const Link = styled.a`
+    text-transform: none;
+    text-decoration: none;
+    color: inherit;
+    border: none;
+`;
+
 export const TargetedPart = () => {
     const [part, setPart] = useState(0);
     const { user, totalPoints } = useProgress();
     const ratio = useSizeRatio();
-
-    //TODO: отображение баллов после того как дима сделает
 
     return (
         <AnimatePresence key="targeted">
@@ -202,7 +207,7 @@ export const TargetedPart = () => {
                             </InfoTitle>
                             <InfoRow $ratio={ratio}><PurpleText>+10 б.</PurpleText>за регистрацию в игре </InfoRow>
                             <InfoRow $ratio={ratio}><PurpleText>+10 б.</PurpleText>за приглашение и регистрацию 1 друга со своего факультета (max 5 друзей)</InfoRow>
-                            <InfoRow $ratio={ratio}><PurpleText>+10 б.</PurpleText>за подписку на Телеграм-канал @futru</InfoRow>
+                            <InfoRow $ratio={ratio}><PurpleText>+10 б.</PurpleText><p>за подписку на Телеграм-канал <Link href="https://t.me/futru" target='_blank'>@futru</Link></p></InfoRow>
                             <InfoRow $ratio={ratio}><PurpleText>+5 б.</PurpleText>за каждое достижение в игре (max 9 достижений)</InfoRow>
                             <ChancesInfoWrapper >
                                 <InfoTitle $mt={15 * ratio + 'px'}>Если ты соберешь</InfoTitle>

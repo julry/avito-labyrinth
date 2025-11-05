@@ -3,6 +3,7 @@ import {BrightScreen} from '../shared/BrightScreen';
 import { useSizeRatio } from "../../hooks/useSizeRatio";
 import { RedStroke3LineXl} from '../shared/RedStrokes';
 import { MarkeredText } from "../shared/Texts";
+import WebApp from "@twa-dev/sdk";
 
 const Picture = styled.div`
     position: absolute;
@@ -28,8 +29,9 @@ const Content = styled.div`
 
 export const WaitingGameScreen = () => {
     const ratio = useSizeRatio();
+
     const handleClick = () => {
-        //close app?
+        WebApp?.close?.();
     };
 
     return (

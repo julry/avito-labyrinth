@@ -1,4 +1,4 @@
-import { createContext, useEffect, useContext, useRef, useState, useMemo } from 'react'
+import { createContext, useEffect, useContext, useRef, useState } from 'react'
 import { FTClient } from 'ft-client';
 import WebApp from '@twa-dev/sdk';
 import { uid } from 'uid';
@@ -21,15 +21,6 @@ const INITIAL_ACTIVITY_DATA = {
     7: INITIAL_DAY_ACTIVITY,
     8: INITIAL_DAY_ACTIVITY,
     9: INITIAL_DAY_ACTIVITY,
-    // 1: {isCompleted: true},
-    // 2: {isCompleted: true},
-    // 3: {isCompleted: true},
-    // 4: {isCompleted: true},
-    // 5: {isCompleted: true},
-    // 6: {isCompleted: true},
-    // 7: {isCompleted: true},
-    // 8: {isCompleted: true},
-    // 9: {isCompleted: true},
     10: INITIAL_DAY_ACTIVITY,
     11: INITIAL_DAY_ACTIVITY,
     12: INITIAL_DAY_ACTIVITY,
@@ -80,7 +71,6 @@ const getMoscowTime = (date) => {
 }
 
 const getCurrentWeek = () => {
-    return 4;
     const today = getMoscowTime();
 
     if (today < getMoscowTime(new Date(2025, 10, 10))) return 0;
@@ -228,11 +218,11 @@ export function ProgressProvider(props) {
 
         initProject().catch((e) => console.log(e));
 
-        // if (WebApp) {
-        //     WebApp.ready();
-        //     WebApp.expand();
-        //     WebApp.lockOrientation();
-        // }
+        if (WebApp) {
+            WebApp.ready();
+            WebApp.expand();
+            WebApp.lockOrientation();
+        }
     }, []);
 
     const loadRecord = () => {
@@ -244,40 +234,35 @@ export function ProgressProvider(props) {
             const login = getUrlParam('login') ?? DEV_ID;
             return client.current.findRecord('id', login);
         } 
-        return ({data: INITIAL_USER});
-        
-        // if (window?.location?.hostname === 'localhost' || !!getUrlParam('screen')) {
-            // return client.current.findRecord('id', DEV_ID);
-        // } else {
-        //     console.log('webAppInitData', webAppInitData);
-        // } 
 
-        // if (
-        //     WebApp?.platform?.toLowerCase()?.includes('web') || WebApp?.platform?.toLowerCase()?.includes('desktop')
-        //     || webApp?.platform?.toLowerCase()?.includes('web') || webApp?.platform?.toLowerCase()?.includes('desktop')
-        // ) {
-        //         isDesktop.current = true;
+        console.log('webAppInitData', webAppInitData);
 
-        //         return {};
-        // }
+        if (
+            WebApp?.platform?.toLowerCase()?.includes('web') || WebApp?.platform?.toLowerCase()?.includes('desktop')
+            || webApp?.platform?.toLowerCase()?.includes('web') || webApp?.platform?.toLowerCase()?.includes('desktop')
+        ) {
+                isDesktop.current = true;
+
+                return {};
+        }
     
-        // if (webAppInitData) {
-        //     return client.current.getTgRecord(webAppInitData);
-        // } else if (initData) {
-        //     return client.current.getTgRecord(initData);
-        // } else if (!window?.Telegram) {
-        //     console.error('Telegram не определен')
+        if (webAppInitData) {
+            return client.current.getTgRecord(webAppInitData);
+        } else if (initData) {
+            return client.current.getTgRecord(initData);
+        } else if (!window?.Telegram) {
+            console.error('Telegram не определен')
 
-        //     throw new Error('Telegram не определен')
-        // } else if (!window?.Telegram?.WebApp) {
-        //     console.error('Webapp не определен')
+            throw new Error('Telegram не определен')
+        } else if (!window?.Telegram?.WebApp) {
+            console.error('Webapp не определен')
 
-        //     throw new Error('Webapp не определен')
-        // } else {
-        //     console.error('В WebApp нет данных пользователя')
+            throw new Error('Webapp не определен')
+        } else {
+            console.error('В WebApp нет данных пользователя')
 
-        //     throw new Error ('В WebApp нет данных пользователя');
-        // }
+            throw new Error ('В WebApp нет данных пользователя');
+        }
     }
 
     const next = (customScreen) => {

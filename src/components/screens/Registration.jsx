@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { CURRENT_WEEK, useProgress } from "../../contexts/ProgressContext";
-import { faculties, universities } from "../../constants/universities";
+import { universities } from "../../constants/universities";
 import { Select } from "../shared/Select";
 import { FlexWrapper } from "../shared/ContentWrapper";
 import { Input } from "../shared/Input";
@@ -128,7 +128,6 @@ const Link = styled.a`
     font-weight: 500;
 `;
 
-//TODO: вернуть куски после базы
 export const Registration = () => {
     const ratio = useSizeRatio();
     const { next, checkEmailRegistrated, registrateUser } = useProgress();
@@ -181,10 +180,10 @@ export const Registration = () => {
         setIsSending(false);
 
 
-        // if (regRes?.isError) {
-        //     setIsNetworkError(true);
-        //     return;
-        // }
+        if (regRes?.isError) {
+            setIsNetworkError(true);
+            return;
+        }
 
         if (CURRENT_WEEK < 1) {
             next(SCREENS.WAITING);

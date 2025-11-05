@@ -78,10 +78,16 @@ const InfoRow = styled.div`
     }
 `;
 
+const Link = styled.a`
+    text-transform: none;
+    text-decoration: none;
+    color: inherit;
+    border: none;
+`;
+
 export const UntargetedPart = () => {
     const { totalPoints } = useProgress();
     const ratio = useSizeRatio();
-    //TODO: отображение баллов после того как дима сделает
 
     return (
         <>
@@ -109,7 +115,7 @@ export const UntargetedPart = () => {
                     Для участия в розыгрыше нужно набрать не меньше 45 баллов.{'\n'}Как это сделать?
                 </InfoTitle>
                 <InfoRow $ratio={ratio}><PurpleText>+10 б.</PurpleText>за регистрацию в игре </InfoRow>
-                <InfoRow $ratio={ratio}><PurpleText>+10 б.</PurpleText>за подписку на Телеграм-канал @futru</InfoRow>
+                <InfoRow $ratio={ratio}><PurpleText>+10 б.</PurpleText><p>за подписку на Телеграм-канал <Link href="https://t.me/futru" target='_blank'>@futru</Link></p></InfoRow>
                 <InfoRow $ratio={ratio}><PurpleText>+5 б.</PurpleText>за каждое достижение в игре (max 9)</InfoRow>
                 <InfoTitle $mt={ratio * 26}>Максимум — 65 б.</InfoTitle>
             </Content>
