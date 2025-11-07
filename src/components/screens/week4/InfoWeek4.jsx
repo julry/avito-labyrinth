@@ -1,4 +1,5 @@
 import { useSizeRatio } from "../../../hooks/useSizeRatio"
+import { reachMetrikaGoal } from "../../../utils/reachMetrikaGoal";
 import { InfoScreen } from "../../shared/InfoScreen";
 import { RedStroke3Line } from "../../shared/RedStrokes";
 import { MarkeredText } from "../../shared/Texts";
@@ -7,7 +8,7 @@ export const InfoWeek4 = () => {
     const ratio = useSizeRatio();
 
     return (
-        <InfoScreen buttonText={"На поиски гармонии"} week={4}>
+        <InfoScreen buttonText={"На поиски гармонии"} week={4} onClick={() => reachMetrikaGoal('startlevel10')}>
             <RedStroke3Line>В Авито мы верим: хороший работник = отдохнувший{'\n'}работник</RedStroke3Line>
             <p>
                 На этой неделе поговорим про{' '}

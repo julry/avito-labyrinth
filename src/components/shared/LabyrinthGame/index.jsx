@@ -18,6 +18,7 @@ import week4GameBg from '../../../assets/images/week4GameBg.svg';
 import { Block } from "../Block";
 import { RedStroke2Line, RedStroke3Line } from "../RedStrokes";
 import { Button } from "../Button";
+import { reachMetrikaGoal } from "../../../utils/reachMetrikaGoal";
 
 const WEEK_TO_BG = {
     1: week1GameBg,
@@ -198,6 +199,24 @@ export function LabyrinthGame({
     //     return () => window.removeEventListener('keydown', handleEnd);
     // });
 
+    const handleStartFirst = () => {
+        reachMetrikaGoal('startlevel1');
+        setIsFirstModal(false)
+    }
+
+    const handleStartFirstStars = () => {
+        reachMetrikaGoal('startlevel6');
+        setIsFirstStarModal(false)
+    }
+
+    const handleExitLevel = () => {
+        if ([1, 6, 10, 11, 12].includes(level)) {
+            reachMetrikaGoal(`finishlevel${level}`)
+        }
+
+        next(SCREENS[`LOBBY${week}`]);
+    }
+
     return (
         <>
             <Wrapper $bg={`${WEEK_TO_BG[week]}`}>
@@ -331,7 +350,7 @@ export function LabyrinthGame({
 
                 </GameController>
             </Wrapper>
-            <SkipModal isOpen={isSkipping} onClose={() => setIsSkipping(false)} onExit={() => next(SCREENS[`LOBBY${week}`])} />
+            <SkipModal isOpen={isSkipping} onClose={() => setIsSkipping(false)} onExit={handleExitLevel} />
             <Modal isOpen={isFirstModal}>
                 <Block>
                     <RedStroke2Line>
@@ -339,7 +358,7 @@ export function LabyrinthGame({
                     </RedStroke2Line>
                     <TextModal>Лабиринт может оказаться непростым. Это твое путешествие, и главное — двигаться в своем темпе. Удачи!</TextModal>
                 </Block>
-                <ButtonModal onClick={() => setIsFirstModal(false)}>Начать путешествие</ButtonModal>
+                <ButtonModal onClick={handleStartFirst}>Начать путешествие</ButtonModal>
             </Modal>
             <Modal isOpen={isFirstStarModal}>
                 <Block>
@@ -347,7 +366,7 @@ export function LabyrinthGame({
                         Собирай артефакты-звездочки, чтобы найти выход из лабиринта
                     </RedStroke3Line>
                 </Block>
-                <ButtonModal onClick={() => setIsFirstStarModal(false)}>Продолжить</ButtonModal>
+                <ButtonModal onClick={handleStartFirstStars}>Продолжить</ButtonModal>
             </Modal>
             <NewAchieveModal isOpen={newAchieve !== undefined} achieveId={newAchieve} onClose={() => { setNewAchieve() }} />
         </>

@@ -4,6 +4,7 @@ import { useProgress } from "../../contexts/ProgressContext";
 import { BrightScreen } from "../shared/BrightScreen";
 import { useSizeRatio } from "../../hooks/useSizeRatio";
 import { MarkeredText, PurpleText } from "../shared/Texts";
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 import { FlexWrapper } from "../shared/ContentWrapper";
 
 const Picture = styled.div`
@@ -37,6 +38,10 @@ export const IntroRegistration = () => {
     const { next } = useProgress();
 
     const handleClick = () => {
+        if (stage === 0) {
+            reachMetrikaGoal('startgame');
+        };
+
         if (stage < 2) {
             setStage(prev => prev + 1);
 

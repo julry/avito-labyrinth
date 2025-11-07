@@ -175,11 +175,11 @@ export const Registration = () => {
 
         setIsSending(false);
 
-
-        if (regRes?.isError) {
-            setIsNetworkError(true);
-            return;
-        }
+        //TODO: remove
+        // if (regRes?.isError) {
+        //     setIsNetworkError(true);
+        //     return;
+        // }
 
         if (CURRENT_WEEK < 1) {
             next(SCREENS.WAITING);

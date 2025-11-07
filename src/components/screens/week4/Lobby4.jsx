@@ -7,6 +7,7 @@ import { BlueText } from "../../shared/Texts";
 import { UnavailableTitle } from "../../shared/UnavailableTitle";
 import { useImagePreloader } from '../../../hooks/useImagePreloader';
 import { week4Images } from '../../../constants/preloads';
+import { reachMetrikaGoal } from '../../../utils/reachMetrikaGoal';
 
 const TitleWrapper = styled.div`
     position: absolute;
@@ -38,6 +39,10 @@ export const Lobby4 = () => {
 
     const handleClickItem = (index, level) => {
         if (isUnable || level !== currentLevel) return;
+
+        if ([11, 12].includes(level)) {
+            reachMetrikaGoal(`startlevel${level}`);
+        }
 
         if (index === 1) {
             next(SCREENS.INFOWEEK4);

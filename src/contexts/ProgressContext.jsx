@@ -71,6 +71,8 @@ const getMoscowTime = (date) => {
 }
 
 const getCurrentWeek = () => {
+    return 4;
+
     const today = getMoscowTime();
 
     if (today < getMoscowTime(new Date(2025, 10, 10))) return 0;
@@ -229,6 +231,9 @@ export function ProgressProvider(props) {
         const webApp = window?.Telegram?.WebApp;
         let webAppInitData = webApp?.initData;
         let initData = WebApp.initData;
+
+        //TODO: remove
+        return { data: INITIAL_USER };
 
         if (window?.location?.hostname === 'localhost' || !!getUrlParam('login')) {
             const login = getUrlParam('login') ?? DEV_ID;
